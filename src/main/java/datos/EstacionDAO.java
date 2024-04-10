@@ -62,7 +62,7 @@ public class EstacionDAO {
         ResultSet result = null;
         EstacionJB estacion = null;
 		
-		List<EstacionJB> estaciones = new ArrayList<>();
+		List<EstacionJB> lista_estaciones = new ArrayList<>();
 		
 		try {
 			conn = Conexion.getConnection();
@@ -81,7 +81,7 @@ public class EstacionDAO {
 				String longitud = result.getString("longitud");
 				
 				estacion = new EstacionJB(id_estacion, numero, nombre, descripcion, latitud, longitud);
-				estaciones.add(estacion);
+				lista_estaciones.add(estacion);
 			}
 			Conexion.close(result);
 			Conexion.close(state);
@@ -91,7 +91,7 @@ public class EstacionDAO {
 			e.printStackTrace();
 		}
 		
-		return estaciones;
+		return lista_estaciones;
 	}
 	
 	public int insert(EstacionJB estacion) {

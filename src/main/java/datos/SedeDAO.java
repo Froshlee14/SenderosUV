@@ -58,7 +58,7 @@ public class SedeDAO {
         ResultSet result = null;
 		SedeJB sede = null;
 		
-		List<SedeJB> sedes = new ArrayList<>();
+		List<SedeJB> lista_sedes = new ArrayList<>();
 		
 		try {
             conn = Conexion.getConnection();
@@ -70,7 +70,7 @@ public class SedeDAO {
 				String nombre = result.getString("nombre");
 				
 				sede = new SedeJB(id_sede,nombre);
-				sedes.add(sede);
+				lista_sedes.add(sede);
 			}
 			Conexion.close(result);
 			Conexion.close(state);
@@ -80,7 +80,7 @@ public class SedeDAO {
 			e.printStackTrace();
 		}
 		
-		return sedes;
+		return lista_sedes;
 	}
 	
 	public int insert(SedeJB sede) {

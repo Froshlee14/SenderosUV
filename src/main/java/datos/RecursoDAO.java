@@ -63,7 +63,7 @@ public class RecursoDAO {
         ResultSet result = null;
         RecursoJB recurso = null;
 		
-		List<RecursoJB> recursos = new ArrayList<>();
+		List<RecursoJB> lista_recursos = new ArrayList<>();
 		
 		try {
             conn = Conexion.getConnection();
@@ -83,7 +83,7 @@ public class RecursoDAO {
 				
 				System.out.println("registro encontrado");
 				recurso = new RecursoJB(id_recurso,url,creditos,id_tipo_recurso, tipo_recurso);
-				recursos.add(recurso);
+				lista_recursos.add(recurso);
 			}
 			Conexion.close(result);
 			Conexion.close(state);
@@ -93,7 +93,7 @@ public class RecursoDAO {
 			e.printStackTrace();
 		}
 		
-		return recursos;
+		return lista_recursos;
 	}
 
 	public int insert(RecursoJB recurso) {

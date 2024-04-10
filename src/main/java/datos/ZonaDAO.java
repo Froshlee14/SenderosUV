@@ -24,7 +24,7 @@ public class ZonaDAO {
         ResultSet result = null;
 		ZonaJB zona = null;
 		
-		List<ZonaJB> zonas = new ArrayList<>();
+		List<ZonaJB> lista_zonas = new ArrayList<>();
 		
 		try {
             conn = Conexion.getConnection();
@@ -36,7 +36,7 @@ public class ZonaDAO {
 				String nombre = result.getString("nombre");
 				
 				zona = new ZonaJB(id_zona,nombre);
-				zonas.add(zona);
+				lista_zonas.add(zona);
 			}
 			Conexion.close(result);
 			Conexion.close(state);
@@ -46,7 +46,7 @@ public class ZonaDAO {
 			e.printStackTrace();
 		}
 		
-		return zonas;
+		return lista_zonas;
 	}
 	
 	

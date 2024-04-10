@@ -75,7 +75,7 @@ public class SenderoDAO {
         ResultSet result = null;
 		SenderoJB sendero = null;
 		
-		List<SenderoJB> senderos = new ArrayList<>();
+		List<SenderoJB> lista_senderos = new ArrayList<>();
 		
 		try {
             conn = Conexion.getConnection();
@@ -93,7 +93,7 @@ public class SenderoDAO {
 				//boolean status = result.getBoolean("status");
 				
 				sendero = new SenderoJB(id_sendero,nombre,id_sede,nombre_sede,year,id_zona,nombre_zona);
-				senderos.add(sendero);
+				lista_senderos.add(sendero);
 			}
 			Conexion.close(result);
 			Conexion.close(state);
@@ -103,7 +103,7 @@ public class SenderoDAO {
 			e.printStackTrace();
 		}
 		
-		return senderos;
+		return lista_senderos;
 	}
 	
 	public List<SenderoJB>  selectPorZona(int id_zona){
@@ -112,7 +112,7 @@ public class SenderoDAO {
         ResultSet result = null;
 		SenderoJB sendero = null;
 		
-		List<SenderoJB> senderos = new ArrayList<>();
+		List<SenderoJB> lista_senderos = new ArrayList<>();
 		
 		try {
             conn = Conexion.getConnection();
@@ -134,7 +134,7 @@ public class SenderoDAO {
 				
 				System.out.println("registro encontrado");
 				sendero = new SenderoJB(id_sendero,nombre,id_sede,nombre_sede,year,id_zona,nombre_zona);
-				senderos.add(sendero);
+				lista_senderos.add(sendero);
 			}
 			Conexion.close(result);
 			Conexion.close(state);
@@ -144,7 +144,7 @@ public class SenderoDAO {
 			e.printStackTrace();
 		}
 		
-		return senderos;
+		return lista_senderos;
 	}
 	
 	public int insert(SenderoJB sendero) {

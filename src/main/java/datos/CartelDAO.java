@@ -57,7 +57,7 @@ public class CartelDAO {
         ResultSet result = null;
         CartelJB cartel = null;
 		
-		List<CartelJB> carteles = new ArrayList<>();
+		List<CartelJB> lista_cartel = new ArrayList<>();
 		
 		try {
             conn = Conexion.getConnection();
@@ -74,7 +74,7 @@ public class CartelDAO {
 				
 				System.out.println("registro encontrado");
 				cartel = new CartelJB(id_cartel,descripcion);
-				carteles.add(cartel);
+				lista_cartel.add(cartel);
 			}
 			Conexion.close(result);
 			Conexion.close(state);
@@ -84,7 +84,7 @@ public class CartelDAO {
 			e.printStackTrace();
 		}
 		
-		return carteles;
+		return lista_cartel;
 	}
 	
 	public int insert(CartelJB cartel) {
