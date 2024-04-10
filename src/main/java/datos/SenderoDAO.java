@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import modelo.SenderoJB;
-import modelo.ZonaJB;
 
 public class SenderoDAO {
 	
