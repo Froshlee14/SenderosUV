@@ -1,5 +1,18 @@
 USE SenderosUV;
 -- DROP DATABASE senderosuv;
+CREATE TABLE usuario(
+	id_usuario SERIAL,
+	nombre VARCHAR (20),
+	contrasena VARCHAR (20),
+	id_rol_usuario int,
+	PRIMARY KEY (id_usuario)
+);
+
+CREATE TABLE rol_usuario(
+	id_rol_usuario SERIAL,
+	rol_usuario VARCHAR (20),
+	PRIMARY KEY (id_rol_usuario)
+);
 
 CREATE TABLE zona(
 	id_zona SERIAL,
@@ -100,5 +113,6 @@ DROP TABLE zona_sendero;
 DROP TABLE sendero;
 DROP TABLE sede;
 DROP TABLE zona;
+DROP TABLE usuario;
 */
 
