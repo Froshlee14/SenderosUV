@@ -8,23 +8,14 @@ import modelo.SenderoJB;
 
 public class SenderoDAO {
 	
-	public static final String selectSQL = "SELECT "
-			+ "sendero.id_sendero, sendero.nombre, sede.id_sede, sede.nombre, sendero.anio_fundacion, zona.id_zona, zona.nombre "
-			+ "FROM  zona JOIN zona_sendero ON zona.id_zona = zona_sendero.id_zona"
-			+ "JOIN sendero ON zona_sendero.id_sendero = sendero.id_sendero"
-			+ "JOIN sede ON sendero.id_sede = sede.id_sede where id_sendero = ?;";
+	public static final String selectSQL = 
+			"SELECT sendero.id_sendero, sendero.nombre, sede.id_sede, sede.nombre, sendero.anio_fundacion, zona.id_zona, zona.nombre FROM  zona JOIN zona_sendero ON zona.id_zona = zona_sendero.id_zona JOIN sendero ON zona_sendero.id_sendero = sendero.id_sendero JOIN sede ON sendero.id_sede = sede.id_sede where id_sendero = ?;";
 	
-	public static final String selectAllSQL = "SELECT "
-			+ "sendero.id_sendero, sendero.nombre, sede.id_sede, sede.nombre, sendero.anio_fundacion, zona.id_zona, zona.nombre "
-			+ "FROM  zona JOIN zona_sendero ON zona.id_zona = zona_sendero.id_zona"
-			+ "JOIN sendero ON zona_sendero.id_sendero = sendero.id_sendero"
-			+ "JOIN sede ON sendero.id_sede = sede.id_sede;";
+	public static final String selectAllSQL = 
+			"SELECT sendero.id_sendero, sendero.nombre, sede.id_sede, sede.nombre, sendero.anio_fundacion, zona.id_zona, zona.nombre FROM  zona JOIN zona_sendero ON zona.id_zona = zona_sendero.id_zona JOIN sendero ON zona_sendero.id_sendero = sendero.id_sendero JOIN sede ON sendero.id_sede = sede.id_sede;";
 	
-	public static final String selectPorZonaSQL = "SELECT "
-			+ "sendero.id_sendero, sendero.nombre, sede.id_sede, sede.nombre, sendero.anio_fundacion, zona.id_zona, zona.nombre "
-			+ "FROM  zona JOIN zona_sendero ON zona.id_zona = zona_sendero.id_zona"
-			+ "JOIN sendero ON zona_sendero.id_sendero = sendero.id_sendero"
-			+ "JOIN sede ON sendero.id_sede = sede.id_sede where id_zona = ?;";
+	public static final String selectPorZonaSQL = 
+			"SELECT sendero.id_sendero, sendero.nombre, sede.id_sede, sede.nombre, sendero.anio_fundacion, zona.id_zona, zona.nombre FROM  zona JOIN zona_sendero ON zona.id_zona = zona_sendero.id_zona JOIN sendero ON zona_sendero.id_sendero = sendero.id_sendero JOIN sede ON sendero.id_sede = sede.id_sede where id_zona = ?;";
 	
 	public static final String insertSQL = "INSERT INTO sendero (nombre,id_sede,anio_fundacion,id_zona) VALUES (?,?,?,?);";
 	public static final String updateSQL = "UPDATE sendero SET nombre=? id_sede=?, anio_fundacion=?, id_zona=? where id_sendero=?;";

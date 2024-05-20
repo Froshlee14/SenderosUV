@@ -3,12 +3,14 @@ C:\Users\sheld\Desktop\senderosUV\src\main\java\modelo\SenderoJB.java
 C:\Users\sheld\Desktop\senderosUV\src\main\java\modelo\EstacionCartelJB.java
 C:\Users\sheld\Desktop\senderosUV\src\main\java\modelo\ZonaJB.java
 C:\Users\sheld\Desktop\senderosUV\src\main\java\modelo\ZonaSenderoJB.java
+C:\Users\sheld\Desktop\senderosUV\src\main\java\controlador\ServletSenderosLista.java
 C:\Users\sheld\Desktop\senderosUV\src\main\java\datos\UsuarioDAO.java
 C:\Users\sheld\Desktop\senderosUV\src\main\java\modelo\UsuarioJB.java
 C:\Users\sheld\Desktop\senderosUV\src\main\java\modelo\SedeJB.java
 C:\Users\sheld\Desktop\senderosUV\src\main\java\datos\SenderoDAO.java
 C:\Users\sheld\Desktop\senderosUV\src\main\java\datos\TipoRecursoDAO.java
 C:\Users\sheld\Desktop\senderosUV\src\main\java\modelo\TipoRecursoJB.java
+C:\Users\sheld\Desktop\senderosUV\src\main\java\controlador\ServletIndex.java
 C:\Users\sheld\Desktop\senderosUV\src\main\java\datos\CartelRecursoDAO.java
 C:\Users\sheld\Desktop\senderosUV\src\main\java\modelo\CartelRecursoJB.java
 C:\Users\sheld\Desktop\senderosUV\src\main\java\modelo\Rol_UsuarioJB.java
