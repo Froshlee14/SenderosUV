@@ -68,6 +68,14 @@ public class UsuarioJB implements Serializable{
 	public void set_id_rol_usuario(int id_rol_usuario) {
 		this.id_rol_usuario = id_rol_usuario;
 	}
+
+	public String get_rol_usuario() {
+		return rol_usuario;
+	}
+
+	public void set_rol_usuario(String rol_usuario) {
+		this.rol_usuario = rol_usuario;
+	}
 	
 	
 	

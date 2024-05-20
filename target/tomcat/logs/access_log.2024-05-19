@@ -1,0 +1,6 @@
+0:0:0:0:0:0:0:1 - - [19/May/2024:20:17:36 -0600] "GET /senderosUV HTTP/1.1" 302 - http-bio-8080-exec-1 0
+0:0:0:0:0:0:0:1 - - [19/May/2024:20:17:37 -0600] "GET /senderosUV/ HTTP/1.1" 200 180 http-bio-8080-exec-3 270
+0:0:0:0:0:0:0:1 - - [19/May/2024:20:17:38 -0600] "GET /senderosUV/login.jsp? HTTP/1.1" 200 2466 http-bio-8080-exec-4 31
+0:0:0:0:0:0:0:1 - - [19/May/2024:20:17:43 -0600] "POST /senderosUV/ServletLogin HTTP/1.1" 200 180 http-bio-8080-exec-5 277
+0:0:0:0:0:0:0:1 - - [19/May/2024:20:17:54 -0600] "GET /senderosUV/login.jsp? HTTP/1.1" 200 2466 http-bio-8080-exec-6 2
+0:0:0:0:0:0:0:1 - - [19/May/2024:20:18:15 -0600] "POST /senderosUV/ServletLogin HTTP/1.1" 200 225 http-bio-8080-exec-7 29

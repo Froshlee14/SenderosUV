@@ -100,7 +100,9 @@ CREATE TABLE  cartel_recurso(
 	FOREIGN KEY (id_recurso) REFERENCES recurso(id_recurso)
 );
 
-
+INSERT INTO rol_usuario (rol_usuario) VALUES ('admin');
+INSERT INTO rol_usuario (rol_usuario) VALUES ('editor');
+INSERT INTO usuario (nombre, contrasena, id_rol_usuario) VALUES ('Administrador', 'password123', 1);
 /*
 DROP TABLE cartel_recurso;
 DROP TABLE estacion_cartel;
