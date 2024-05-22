@@ -1,18 +1,5 @@
 USE SenderosUV;
 -- DROP DATABASE senderosuv;
-CREATE TABLE usuario(
-	id_usuario SERIAL,
-	nombre VARCHAR (20),
-	contrasena VARCHAR (20),
-	id_rol_usuario int,
-	PRIMARY KEY (id_usuario)
-);
-
-CREATE TABLE rol_usuario(
-	id_rol_usuario SERIAL,
-	rol_usuario VARCHAR (20),
-	PRIMARY KEY (id_rol_usuario)
-);
 
 CREATE TABLE zona(
 	id_zona SERIAL,
@@ -20,20 +7,31 @@ CREATE TABLE zona(
 	PRIMARY KEY (id_zona)
 );
 
-CREATE TABLE sede(
-	id_sede SERIAL,
-	nombre VARCHAR (50),
-	PRIMARY KEY (id_sede)
+CREATE TABLE tipo_recurso (
+	id_tipo_recurso SERIAL,
+	tipo VARCHAR (20),
+	PRIMARY KEY (id_tipo_recurso)
+);
+
+CREATE TABLE recurso (
+	id_recurso SERIAL,
+	url VARCHAR (100),
+    creditos varchar (100),
+    id_tipo_recurso INT,
+    
+	PRIMARY KEY (id_recurso),
+    FOREIGN KEY (id_tipo_recurso) REFERENCES tipo_recurso(id_tipo_recurso)
 );
 	
 CREATE TABLE sendero(
 	id_sendero SERIAL,
 	nombre VARCHAR (50),
-	id_sede int,
+	sede VARCHAR (50),
+	logo INT,
 	anio_fundacion date,
 	id_zona INT,
     PRIMARY KEY (id_sendero),
-    FOREIGN KEY (id_sede) REFERENCES sede(id_sede)
+    FOREIGN KEY (logo) REFERENCES recurso(id_recurso)
 );
 
 CREATE TABLE zona_sendero(
@@ -60,22 +58,6 @@ CREATE TABLE cartel (
 	PRIMARY KEY (id_cartel)
 );
 
-CREATE TABLE tipo_recurso (
-	id_tipo_recurso SERIAL,
-	tipo VARCHAR (20),
-	PRIMARY KEY (id_tipo_recurso)
-);
-
-CREATE TABLE recurso (
-	id_recurso SERIAL,
-	url VARCHAR (100),
-    creditos varchar (100),
-    id_tipo_recurso INT,
-    
-	PRIMARY KEY (id_recurso),
-    FOREIGN KEY (id_tipo_recurso) REFERENCES tipo_recurso(id_tipo_recurso)
-);
-
 CREATE TABLE sendero_estacion(
 	id_sendero INT,
 	id_estacion INT,
@@ -100,10 +82,42 @@ CREATE TABLE  cartel_recurso(
 	FOREIGN KEY (id_recurso) REFERENCES recurso(id_recurso)
 );
 
-INSERT INTO rol_usuario (rol_usuario) VALUES ('admin');
-INSERT INTO rol_usuario (rol_usuario) VALUES ('editor');
-INSERT INTO usuario (nombre, contrasena, id_rol_usuario) VALUES ('Administrador', 'password123', 1);
+CREATE TABLE usuario(
+	id_usuario SERIAL,
+	nombre VARCHAR (20),
+	contrasena VARCHAR (20),
+	id_rol_usuario int,
+	PRIMARY KEY (id_usuario)
+);
+
+CREATE TABLE rol_usuario(
+	id_rol_usuario SERIAL,
+	rol_usuario VARCHAR (20),
+	PRIMARY KEY (id_rol_usuario)
+);
+
+INSERT INTO rol_usuario (rol_usuario) 
+VALUES 
+    ('Administrador'),
+    ('Editor');
+
+INSERT INTO usuario (nombre, contrasena, id_rol_usuario) 
+VALUES 
+    ('Admin', '123', 1),
+    ('Eddy', '123', 2),
+    ('Eddy2', '123', 2);
+
+INSERT INTO zona (nombre) 
+VALUES 
+    ('Xalapa'),
+    ('Veracruz'),
+    ('Orizaba-Córdoba'),
+    ('Poza Rica-Tuxpan'),
+    ('Coatzacoalcos-Minatitlán');
+
 /*
+DROP TABLE rol_usuario;
+DROP TABLE usuario;
 DROP TABLE cartel_recurso;
 DROP TABLE estacion_cartel;
 DROP TABLE sendero_estacion;
@@ -113,8 +127,7 @@ DROP TABLE cartel;
 DROP TABLE estacion;
 DROP TABLE zona_sendero;
 DROP TABLE sendero;
-DROP TABLE sede;
 DROP TABLE zona;
-DROP TABLE usuario;
+
 */
 

@@ -18,10 +18,10 @@ public class ServletSenderosLista extends HttpServlet{
 	@Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		
-		HttpSession session = request.getSession();
-		UsuarioJB usuario = (UsuarioJB) session.getAttribute("usuario");
+		//HttpSession session = request.getSession();
+		//UsuarioJB usuario = (UsuarioJB) session.getAttribute("usuario");
 		//System.out.println("Servlet: "+usuario);
-		request.setAttribute("usuario",usuario);
+		//request.setAttribute("usuario",usuario);
 		
 		SenderoDAO senderodao = new SenderoDAO();
 		List<SenderoJB> lista = senderodao.selectAll();

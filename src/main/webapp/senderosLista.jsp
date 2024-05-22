@@ -14,37 +14,13 @@
 
 	<body>
 
-		<%
-		UsuarioJB usuario = (UsuarioJB) request.getAttribute("usuario");
-		String mensaje = "";
-		//out.println("JSP: "+usuario);
+		<%@ include file="headerMenu.jsp" %>
 		
-		if (usuario != null) {
-		    mensaje = "Sesión iniciada como " + usuario.get_rol_usuario();
-		} else {
-		    mensaje = "Sesión iniciada como invitado";
-		}
-		
-		session.setAttribute("usuario", usuario);
-		%>
-	
-		<div class="w3-bar w3-border w3-light-grey">
-		  <a href="ServletIndex" class="w3-bar-item w3-button">SENDINA UV</a>
-        <form action="login.jsp" method="get" class="nav-form w3-right">
-            <button type="submit" class="w3-bar-item w3-button w3-hover-blue nav-button w3-blue">Iniciar sesion</button>
-        </form>
-        	<a href="#" class="w3-bar-item w3-button w3-right w3-hover-blue">Ayuda</a>
-			<a href="#" class="w3-bar-item w3-button w3-right w3-hover-blue">Conocenos</a>
-			<a href="ServletSenderosLista" class="w3-bar-item w3-button w3-right w3-hover-blue">Senderos</a>
-		</div>
-	
-		<jsp:useBean id="usuarios" class="modelo.UsuarioJB" scope="request" />
-	
-		<p><%= mensaje %></p>
-		
-		
+		<form action="ServletSenderoModificar" method="get" accept-charset="UTF-8">
+			<input id="id_sendero" type=hidden name="id_sendero" value="0">
+ 			<input type="submit" value="Agregar Sendero" class="w3-button w3-blue">
+    	</form>
 
-		<!-- Fin de encabezado -->
 		<%
 		@SuppressWarnings("unchecked")
 		List<SenderoJB> lista = (List<SenderoJB>) request.getAttribute("lista");
@@ -52,9 +28,9 @@
 			for (SenderoJB sendero : lista) {
 		%>
 			<%--<tr onclick="seleccionarAutobus(<%= autobus.getNumUnidad() %>,this)"> --%>
-			<p><%out.print(sendero.get_id_sendero());%> </p>
-			<%out.print(sendero.get_nombre());%>
-			<%out.print(sendero.get_nombre_sede());%>
+			<p onclick="seleccionarAutobus(<%= sendero.get_id_sendero() %>,this)"><%out.print(sendero.get_nombre());%> </p>
+			<%out.print(sendero.get_id_sendero());%>
+			<%out.print(sendero.get_sede());%>
 			<%out.print(sendero.get_year());%>
 			<p> </p>
 			 

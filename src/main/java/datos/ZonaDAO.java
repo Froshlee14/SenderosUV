@@ -9,11 +9,7 @@ import modelo.ZonaJB;
 public class ZonaDAO {
 	
 	public static final String selectZonasSQL = "SELECT * from zona;";
-	public static final String selectSenderosSQL = "SELECT "
-			+ "sendero.id_sendero, sendero.nombre, sendero.anio_fundacion, sede.nombre "
-			+ "FROM  zona JOIN zona_sendero ON zona.id_zona = zona_sendero.id_zona"
-			+ "JOIN sendero ON zona_sendero.id_sendero = sendero.id_sendero"
-			+ "JOIN sede ON sendero.id_sede = sede.id_sede where id_zona = ?;";
+	public static final String selectSenderosSQL = "SELECT sendero.id_sendero, sendero.nombre, sendero.anio_fundacion, sede.nombre FROM  zona JOIN zona_sendero ON zona.id_zona = zona_sendero.id_zona JOIN sendero ON zona_sendero.id_sendero = sendero.id_sendero JOIN sede ON sendero.id_sede = sede.id_sede where id_zona = ?;";
 	public static final String insertSQL = "INSERT INTO zona (nombre) VALUES (?);";
 	public static final String updateSQL = "UPDATE zona SET nombre=? where id_zona=?;";
 	public static final String deleteSQL = "DELETE FROM zona WHERE id_zona=?;";

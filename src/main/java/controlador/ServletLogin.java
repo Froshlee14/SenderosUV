@@ -25,7 +25,8 @@ public class ServletLogin extends HttpServlet{
         if (usuario!=null) {
         	if (usuario.get_contrasena().equals(password)) {
               
-        		request.setAttribute("usuario",usuario);
+        		HttpSession session = request.getSession();
+        		session.setAttribute("usuario",usuario);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
                 dispatcher.forward(request, response);
                 
