@@ -7,12 +7,11 @@ import javax.servlet.*;
 import java.util.*;
 
 import modelo.SenderoJB;
-import modelo.UsuarioJB;
 import datos.SenderoDAO;
 
-@WebServlet("/ServletSenderosLista")
+@WebServlet("/ServletSenderoLista")
 
-public class ServletSenderosLista extends HttpServlet{
+public class ServletSenderoLista extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 
 	@Override

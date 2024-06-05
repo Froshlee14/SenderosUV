@@ -9,34 +9,34 @@ public class SenderoJB implements Serializable {
 	private int id_sendero;
 	private String nombre;
 	private String sede;
-	private int logo;
 	private Date year;
 	private int id_zona;
 	private String nombre_zona;
-	
-	
+	private String url_recursos;
+
+
 	public SenderoJB() {
 		//Constructor vacio
 	}
 
 
-	public SenderoJB(int id_sendero, String nombre,String sede, int logo, Date year, int id_zona) {
+	public SenderoJB(int id_sendero, String nombre,String sede, Date year, int id_zona, String url_recursos) {
 		this.id_sendero = id_sendero;
 		this.nombre = nombre;
 		this.sede = sede;
-		this.logo = logo;
 		this.year = year;
 		this.id_zona = id_zona;
+		this.url_recursos = url_recursos;
 	}
 
-	public SenderoJB(int id_sendero, String nombre, String sede, int logo, Date year, int id_zona, String nombre_zona) {
+	public SenderoJB(int id_sendero, String nombre, String sede, Date year, int id_zona, String nombre_zona,String url_recursos) {
 		this.id_sendero = id_sendero;
 		this.nombre = nombre;
 		this.sede = sede;
-		this.logo = logo;
 		this.year = year;
 		this.id_zona = id_zona;
 		this.nombre_zona = nombre_zona;
+		this.url_recursos = url_recursos;
 	}
 
 
@@ -99,13 +99,13 @@ public class SenderoJB implements Serializable {
 	}
 
 
-	public int get_logo() {
-		return logo;
+	public String get_url_recursos() {
+		return url_recursos;
 	}
 
 
-	public void set_logo(int logo) {
-		this.logo = logo;
+	public void set_url_recursos(String url_recursos) {
+		this.url_recursos = url_recursos;
 	}
 	
 	

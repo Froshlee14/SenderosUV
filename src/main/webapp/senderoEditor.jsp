@@ -19,22 +19,23 @@
 
 		<%@ include file="headerMenu.jsp" %>
 		
-		<form class="w3-container" action="ServletAutobusModificar" method="post" accept-charset="UTF-8">
+		<form class="w3-container" action="ServletSenderoGuardar" method="post" accept-charset="UTF-8">
 				
 						<%
-							int id = 0;
+							int id_sendero = 0;
 							String nombre = "Sendero nombre ejemplo";
 							String sede = "Sendero sede ejemplo";
 							int logo = 1;
 							String year = "2024-04-11";
 							int zona = 1;
+							String url_recursos = "Inserte URL aqui";
 							
 							SenderoJB sendero = (SenderoJB) request.getAttribute("sendero");
 							if (sendero != null) {
-								id = sendero.get_id_sendero();
+								id_sendero = sendero.get_id_sendero();
 								nombre = sendero.get_nombre();
 								sede = sendero.get_sede();
-								logo = sendero.get_logo();
+								url_recursos = sendero.get_url_recursos();
 								
 								Date date = sendero.get_year();
 						        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -44,7 +45,7 @@
 						
 						%>
 
-			    		<input id="id_sendero" type="hidden" name="id_senero" value="<%=id%>">    		
+			    		<input id="id_sendero" type=hidden name="id_senero" value="<%=id_sendero%>">    		
  
 						<label class="w3-text-blue" for="nombre">Nombre de sendero:</label>
 		    			<input class="w3-input w3-border" id="nombre" type="text"  value="<%=nombre%>" maxlength="50" name="nombre">
@@ -57,7 +58,7 @@
 							List<ZonaJB> zonas = (List<ZonaJB>) request.getAttribute("zonas");
 						%>
  						
-						<label class="w3-text-blue" for="fabricante">Zonas:</label>
+						<label class="w3-text-blue" for="fabricante">Zona:</label>
 		    			<select class="w3-input w3-border" id="zona" name="id_zona">
 								<% for (ZonaJB z : zonas) { %>
            						<option value="<%= z.get_id_zona() %>" <% if (z.get_id_zona()==zona) { %> selected <% } %>>
@@ -68,7 +69,11 @@
 
 
 						<label class="w3-text-blue" for="year">Año de creación:</label>
-			    		<input class="w3-input w3-border" id="year" type="date" value="<%=year%>" name="year" >	
+			    		<input class="w3-input w3-border" id="year" type="date" value="<%=year%>" name="year" >
+			    		
+			    		<label class="w3-text-blue" for="url_recursos">Recursos (URL):</label>
+		    			<input class="w3-input w3-border" id="url_recursos" type="text"  value="<%=url_recursos%>" maxlength="255" name="url_recursos">
+		    			
  				
  					
  					<input class="w3-btn w3-blue" type="submit" value="<%= (sendero != null) ? "Actualizar" : "Guardar" %>">
