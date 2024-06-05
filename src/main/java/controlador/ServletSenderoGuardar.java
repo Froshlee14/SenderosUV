@@ -24,16 +24,7 @@ public class ServletSenderoGuardar extends HttpServlet{
 
 		request.setCharacterEncoding("UTF-8");
 		
-	    String id_sendero_temp = request.getParameter("id_sendero");
-	    int id_sendero = 0;
-	    if (id_sendero_temp != null && !id_sendero_temp.isEmpty()) {
-	        try {
-	            id_sendero = Integer.parseInt(id_sendero_temp);
-	        } catch (NumberFormatException e) {
-	            e.printStackTrace();
-	            // Maneja el error según sea necesario, por ejemplo, redirigiendo o mostrando un mensaje de error
-	        }
-	    }
+	    int id_sendero = Integer.parseInt(request.getParameter("id_sendero"));
 		
 		String nombre = request.getParameter("nombre");
 		String sede = request.getParameter("sede");

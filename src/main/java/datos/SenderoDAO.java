@@ -9,16 +9,16 @@ import modelo.SenderoJB;
 public class SenderoDAO {
 	
 	public static final String selectSQL = 
-			"SELECT sendero.id_sendero, sendero.nombre, sendero.sede, sendero.anio_fundacion, zona.id_zona, zona.nombre, sendero.url_recursos FROM  zona JOIN zona_sendero ON zona.id_zona = zona_sendero.id_zona JOIN sendero ON zona_sendero.id_sendero = sendero.id_sendero where id_sendero = ?;";
+			"SELECT sendero.id_sendero, sendero.nombre, sendero.sede, sendero.anio_fundacion, sendero.id_zona, zona.nombre as nombre_zona, sendero.url_recursos FROM  zona JOIN zona_sendero ON zona.id_zona = zona_sendero.id_zona JOIN sendero ON zona_sendero.id_sendero = sendero.id_sendero where sendero.id_sendero = ?;";
 	
 	public static final String selectAllSQL = 
-			"SELECT sendero.id_sendero, sendero.nombre, sendero.sede, sendero.anio_fundacion, zona.id_zona, zona.nombre as nombre_zona, sendero.url_recursos FROM  zona JOIN zona_sendero ON zona.id_zona = zona_sendero.id_zona JOIN sendero ON zona_sendero.id_sendero = sendero.id_sendero ;";
+			"SELECT sendero.id_sendero, sendero.nombre, sendero.sede, sendero.anio_fundacion, sendero.id_zona, zona.nombre as nombre_zona, sendero.url_recursos FROM  zona JOIN zona_sendero ON zona.id_zona = zona_sendero.id_zona JOIN sendero ON zona_sendero.id_sendero = sendero.id_sendero ;";
 	
 	public static final String selectPorZonaSQL = 
-			"SELECT sendero.id_sendero, sendero.nombre, sendero.sede, sendero.anio_fundacion, zona.id_zona, zona.nombre, sendero.url_recursos FROM  zona JOIN zona_sendero ON zona.id_zona = zona_sendero.id_zona JOIN sendero ON zona_sendero.id_sendero = sendero.id_sendero  where id_zona = ?;";
+			"SELECT sendero.id_sendero, sendero.nombre, sendero.sede, sendero.anio_fundacion, sendero.id_zona, zona.nombre, sendero.url_recursos FROM  zona JOIN zona_sendero ON zona.id_zona = zona_sendero.id_zona JOIN sendero ON zona_sendero.id_sendero = sendero.id_sendero  where id_zona = ?;";
 	
 	public static final String insertSQL = "INSERT INTO sendero (nombre,sede,anio_fundacion,id_zona,url_recursos) VALUES (?,?,?,?,?);";
-	public static final String updateSQL = "UPDATE sendero SET nombre=? sede=?, anio_fundacion=?, id_zona=?, url_recursos=? where id_sendero=?;";
+	public static final String updateSQL = "UPDATE sendero SET nombre=?, sede=?, anio_fundacion=?, id_zona=?, url_recursos=? where id_sendero=?;";
 	public static final String deleteSQL = "DELETE FROM sendero WHERE id_sendero=?;";
 
 	
@@ -39,7 +39,7 @@ public class SenderoDAO {
 			
 			while(result.next()) {
 				String nombre = result.getString("nombre");
-				String sede = result.getString("nombre_sede");
+				String sede = result.getString("sede");
 				Date year = result.getDate("anio_fundacion");
 				int id_zona = result.getInt("id_zona");
 				String nombre_zona = result.getString("nombre_zona");
@@ -47,6 +47,7 @@ public class SenderoDAO {
 				//boolean status = result.getBoolean("status");
 				
 				System.out.println("registro encontrado");
+				System.out.println(id_zona);
 				sendero = new SenderoJB(id_sendero,nombre,sede,year,id_zona,nombre_zona,url_recursos);
 			}
 			Conexion.close(result);
@@ -188,6 +189,7 @@ public class SenderoDAO {
 			state.setDate(3,(Date)sendero.get_year());
 			state.setInt(4,sendero.get_id_zona());
 			state.setString(5,sendero.get_url_recursos());
+			state.setInt(6,sendero.get_id_sendero());
 			
 			registros = state.executeUpdate();
 			if(registros>0)

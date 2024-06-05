@@ -28,10 +28,11 @@
 			for (SenderoJB sendero : lista) {
 		%>
 			<%--<tr onclick="seleccionarAutobus(<%= autobus.getNumUnidad() %>,this)"> --%>
-			<p onclick="seleccionarAutobus(<%= sendero.get_id_sendero() %>,this)"><%out.print(sendero.get_nombre());%> </p>
-			<%out.print(sendero.get_id_sendero());%>
-			<%out.print(sendero.get_sede());%>
-			<%out.print(sendero.get_year());%>
+			<p><%out.print(sendero.get_nombre());%> </p>
+			<form action="ServletSenderoModificar" method="get" accept-charset="UTF-8">
+				<input id="id_sendero" type=text name="id_sendero" value="<%=sendero.get_id_sendero()%>">
+ 				<input type="submit" value="Editar Sendero" class="w3-button w3-blue">
+    		</form>
 			<p> </p>
 			 
 		<%

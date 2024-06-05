@@ -25,7 +25,6 @@
 							int id_sendero = 0;
 							String nombre = "Sendero nombre ejemplo";
 							String sede = "Sendero sede ejemplo";
-							int logo = 1;
 							String year = "2024-04-11";
 							int zona = 1;
 							String url_recursos = "Inserte URL aqui";
@@ -35,17 +34,19 @@
 								id_sendero = sendero.get_id_sendero();
 								nombre = sendero.get_nombre();
 								sede = sendero.get_sede();
-								url_recursos = sendero.get_url_recursos();
 								
 								Date date = sendero.get_year();
 						        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 						        year = sdf.format(date);
+						        
+						        zona = sendero.get_id_zona();
+								url_recursos = sendero.get_url_recursos();
 								
 							}
 						
 						%>
 
-			    		<input id="id_sendero" type=hidden name="id_senero" value="<%=id_sendero%>">    		
+			    		<input id="id_sendero" type=text name="id_sendero" value="<%=id_sendero%>">    		
  
 						<label class="w3-text-blue" for="nombre">Nombre de sendero:</label>
 		    			<input class="w3-input w3-border" id="nombre" type="text"  value="<%=nombre%>" maxlength="50" name="nombre">
