@@ -45,7 +45,7 @@ public class SenderoEstacionDAO {
 		
 		try {
 			conn = Conexion.getConnection();
-			state = conn.prepareStatement(deleteSQL);
+			state = conn.prepareStatement(deletePorEstacionSQL);
 			
 			state.setInt(1,id_estacion);
 			registros = state.executeUpdate();
@@ -70,7 +70,7 @@ public class SenderoEstacionDAO {
 		
 		try {
 			conn = Conexion.getConnection();
-			state = conn.prepareStatement(deletePorEstacionSQL);
+			state = conn.prepareStatement(deletePorSenderoSQL);
 			
 			state.setInt(1,id_sendero);
 			registros = state.executeUpdate();

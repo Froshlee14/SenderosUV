@@ -19,8 +19,8 @@ private static final long serialVersionUID = 1L;
         int id_sendero = Integer.parseInt(request.getParameter(("id_sendero")));
         
 		//Primero borramos su referencia en zona_sendero
-        ZonaSenderoDAO zonasenderodao = new ZonaSenderoDAO();
-        zonasenderodao.delete(id_sendero);
+        //ZonaSenderoDAO zonasenderodao = new ZonaSenderoDAO();
+        //zonasenderodao.delete(id_sendero);
 		
         //Ahora si lo podemos borrar facilmente
         SenderoDAO senderodao = new SenderoDAO();

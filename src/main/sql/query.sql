@@ -18,8 +18,8 @@ CREATE TABLE zona_sendero(
 	id_zona INT,
 	id_sendero INT,
 	
-	FOREIGN KEY (id_zona) REFERENCES zona(id_zona),
-	FOREIGN KEY (id_sendero) REFERENCES sendero(id_sendero)
+	FOREIGN KEY (id_zona) REFERENCES zona(id_zona) ON DELETE CASCADE,
+	FOREIGN KEY (id_sendero) REFERENCES sendero(id_sendero) ON DELETE CASCADE
 );
 
 CREATE TABLE estacion(
@@ -37,8 +37,8 @@ CREATE TABLE sendero_estacion(
 	id_sendero INT,
 	id_estacion INT,
 	
-	FOREIGN KEY (id_sendero) REFERENCES sendero(id_sendero),
-	FOREIGN KEY (id_estacion) REFERENCES estacion(id_estacion)
+	FOREIGN KEY (id_sendero) REFERENCES sendero(id_sendero) ON DELETE CASCADE,
+	FOREIGN KEY (id_estacion) REFERENCES estacion(id_estacion) ON DELETE CASCADE
 );
 
 
@@ -88,3 +88,4 @@ DROP TABLE zona;
 
 */
 
+select * from zona_sendero;
