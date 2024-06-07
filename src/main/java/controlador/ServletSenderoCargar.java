@@ -1,6 +1,7 @@
 package controlador;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -12,15 +13,17 @@ import javax.servlet.http.HttpServletResponse;
 
 import datos.SenderoDAO;
 import modelo.SenderoJB;
+import datos.EstacionDAO;
+import modelo.EstacionJB;
 import datos.ZonaDAO;
 import modelo.ZonaJB;
 
-@WebServlet("/ServletSenderoModificar")
+@WebServlet("/ServletSenderoCargar")
 
 //Este servlet será usado para cargar la vista del registro de nuevos senderos ó cargar los datos 
 //de uno ya existente para la modificacion de éstos.
 
-public class ServletSenderoModificar extends HttpServlet{
+public class ServletSenderoCargar extends HttpServlet{
 private static final long serialVersionUID = 1L;
 	
 	@Override
@@ -31,11 +34,17 @@ private static final long serialVersionUID = 1L;
 	  	
 	  	int id_sendero = Integer.parseInt(request.getParameter(("id_sendero")));
 	  	
+	  	List<EstacionJB> estaciones = new ArrayList<>();
+	  	
 	  	if (id_sendero!=0) {
 		    sendero = senderodao.select(id_sendero);
 		    request.setAttribute("sendero", sendero);
+		    
+			EstacionDAO estaciondao = new EstacionDAO();
+			estaciones = estaciondao.selectPorSendero(id_sendero);	
 	  	}
 	  	
+	  	request.setAttribute("estaciones",estaciones);
 
 	    
 	    //Tambien mando los fabricantes para mostrarlos en el <option>

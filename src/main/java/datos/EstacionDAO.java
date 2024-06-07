@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,10 +13,8 @@ import modelo.EstacionJB;
 public class EstacionDAO {
 	
 	public static final String selectSQL = "SELECT * from estacion where id_estacion=?;";
-	public static final String selectPorSenderoSQL = "SELECT "
-			+ "estacion.id_estacion, estacion.numero, estacion.nombre, estacion.descripcion, estacion.latitud, estacion.longitud "
-			+ "FROM  estacion JOIN sendero_estacion ON estacion.id_estacion = sendero_estacion.id_estacion"
-			+ "JOIN sendero ON sendero_estacion.id_sendero = sendero.id_sendero where id_sendero = ?;";
+	public static final String selectPorSenderoSQL = 
+			"SELECT estacion.id_estacion, estacion.numero, estacion.nombre, estacion.descripcion, estacion.latitud, estacion.longitud FROM  estacion JOIN sendero_estacion ON estacion.id_estacion = sendero_estacion.id_estacion JOIN sendero ON sendero_estacion.id_sendero = sendero.id_sendero where sendero.id_sendero = ?;";
 	public static final String insertSQL = "INSERT INTO estacion (numero, nombre, descripcion,latitud,longitud) VALUES (?,?,?,?,?);";
 	public static final String updateSQL = "UPDATE estacion SET numero=?, nombre=?, descripcion=?, latitud=?, longitud=? where id_estacion=?;";
 	public static final String deleteSQL = "DELETE FROM estacion WHERE id_estacion=?;";
@@ -98,10 +97,11 @@ public class EstacionDAO {
 		Connection conn = null;
 		PreparedStatement state = null;
 		int registros = 0;
+		int id_generado = 0;
 		
 		try {
 			conn = Conexion.getConnection();
-			state = conn.prepareStatement(insertSQL);
+			state = conn.prepareStatement(insertSQL, Statement.RETURN_GENERATED_KEYS);
 			
 			state.setInt(1,estacion.get_numero());
 			state.setString(2,estacion.get_nombre());
@@ -112,6 +112,11 @@ public class EstacionDAO {
 			registros = state.executeUpdate();
 			if(registros>0) {
 				System.out.println("Registro agregado correctamente");
+				ResultSet generatedKeys = state.getGeneratedKeys();
+		        if (generatedKeys.next()) {
+		        	id_generado = generatedKeys.getInt(1);
+		        	System.out.println("ID generada: " + id_generado);
+		        }
 			}
 			
 			Conexion.close(state);
@@ -120,7 +125,7 @@ public class EstacionDAO {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		return registros;
+		return id_generado;
 	}
 	
 	public int update(EstacionJB estacion) {
@@ -137,7 +142,7 @@ public class EstacionDAO {
 			state.setString(3,estacion.get_descripcion());
 			state.setString(4,estacion.get_latitud());
 			state.setString(5,estacion.get_longitud());
-			state.setInt(5,estacion.get_id_estacion());
+			state.setInt(6,estacion.get_id_estacion());
 			
 			registros = state.executeUpdate();
 			if(registros>0)

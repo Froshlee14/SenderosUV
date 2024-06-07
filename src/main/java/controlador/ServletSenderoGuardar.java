@@ -48,7 +48,7 @@ public class ServletSenderoGuardar extends HttpServlet{
 		
 		if (id_sendero == 0 ) {
 			//Verificamos si el registro se agregó correctamente
-			//De ser asi, agregamos la referencia en la tabala-relacion
+			//De ser asi, agregamos la referencia en la tabla-relacion
 			int id_generado = senderodao.insert(sendero);
 			if (id_generado!=0) {
 				

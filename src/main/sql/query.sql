@@ -1,6 +1,3 @@
-
--- DROP DATABASE SenderosUV;
-
 CREATE TABLE zona(
 	id_zona SERIAL,
 	nombre VARCHAR (50),
@@ -45,18 +42,19 @@ CREATE TABLE sendero_estacion(
 );
 
 
+CREATE TABLE rol_usuario(
+	id_rol_usuario SERIAL,
+	rol_usuario VARCHAR (20),
+	PRIMARY KEY (id_rol_usuario)
+);
+
 CREATE TABLE usuario(
 	id_usuario SERIAL,
 	nombre VARCHAR (20),
 	contrasena VARCHAR (20),
 	id_rol_usuario int,
-	PRIMARY KEY (id_usuario)
-);
-
-CREATE TABLE rol_usuario(
-	id_rol_usuario SERIAL,
-	rol_usuario VARCHAR (20),
-	PRIMARY KEY (id_rol_usuario)
+	PRIMARY KEY (id_usuario),
+	FOREIGN KEY (id_rol_usuario) REFERENCES rol_usuario(id_rol_usuario)
 );
 
 INSERT INTO rol_usuario (rol_usuario) 
@@ -79,8 +77,9 @@ VALUES
     ('Coatzacoalcos-Minatitlán');
 
 /*
-DROP TABLE rol_usuario;
+
 DROP TABLE usuario;
+DROP TABLE rol_usuario;
 DROP TABLE sendero_estacion;
 DROP TABLE estacion;
 DROP TABLE zona_sendero;

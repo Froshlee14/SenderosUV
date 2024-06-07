@@ -144,7 +144,7 @@ public class SenderoDAO {
 		Connection conn = null;
 		PreparedStatement state = null;
 		int registros = 0;
-		int idGenerado = 0;
+		int id_generado = 0;
 		
 		try {
 			conn = Conexion.getConnection();
@@ -161,8 +161,8 @@ public class SenderoDAO {
 				System.out.println("Registro agregado correctamente");
 				ResultSet generatedKeys = state.getGeneratedKeys();
 		        if (generatedKeys.next()) {
-		        	idGenerado = generatedKeys.getInt(1);
-		        	System.out.println("ID generada: " + idGenerado);
+		        	id_generado = generatedKeys.getInt(1);
+		        	System.out.println("ID generada: " + id_generado);
 		        }
 			}
 			
@@ -172,7 +172,7 @@ public class SenderoDAO {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		return idGenerado;
+		return id_generado;
 	}
 	
 	public int update(SenderoJB sendero) {

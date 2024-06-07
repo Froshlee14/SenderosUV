@@ -5,6 +5,7 @@ datos\SenderoEstacionDAO.class
 datos\UsuarioDAO.class
 modelo\EstacionJB.class
 datos\ZonaSenderoDAO.class
+controlador\ServletSenderoBorrar.class
 modelo\SenderoEstacionJB.class
 datos\EstacionDAO.class
 modelo\ZonaJB.class
