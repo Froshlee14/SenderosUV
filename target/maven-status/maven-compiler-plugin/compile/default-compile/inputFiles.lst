@@ -7,12 +7,14 @@ C:\Users\sheld\Desktop\senderosUV\src\main\java\datos\UsuarioDAO.java
 C:\Users\sheld\Desktop\senderosUV\src\main\java\modelo\EstacionJB.java
 C:\Users\sheld\Desktop\senderosUV\src\main\java\modelo\UsuarioJB.java
 C:\Users\sheld\Desktop\senderosUV\src\main\java\datos\ZonaSenderoDAO.java
+C:\Users\sheld\Desktop\senderosUV\src\main\java\controlador\ServletSenderoBorrar.java
 C:\Users\sheld\Desktop\senderosUV\src\main\java\controlador\ServletLogin.java
 C:\Users\sheld\Desktop\senderosUV\src\main\java\datos\SenderoDAO.java
 C:\Users\sheld\Desktop\senderosUV\src\main\java\controlador\ServletSenderoLista.java
 C:\Users\sheld\Desktop\senderosUV\src\main\java\datos\ZonaDAO.java
 C:\Users\sheld\Desktop\senderosUV\src\main\java\modelo\Rol_UsuarioJB.java
 C:\Users\sheld\Desktop\senderosUV\src\main\java\modelo\SenderoEstacionJB.java
+C:\Users\sheld\Desktop\senderosUV\src\main\java\controlador\ServletEstacionBorrar.java
 C:\Users\sheld\Desktop\senderosUV\src\main\java\controlador\ServletEstacionGuardar.java
 C:\Users\sheld\Desktop\senderosUV\src\main\java\datos\Conexion.java
 C:\Users\sheld\Desktop\senderosUV\src\main\java\datos\EstacionDAO.java

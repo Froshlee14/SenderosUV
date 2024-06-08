@@ -18,6 +18,8 @@ public class EstacionDAO {
 	public static final String insertSQL = "INSERT INTO estacion (numero, nombre, descripcion,latitud,longitud) VALUES (?,?,?,?,?);";
 	public static final String updateSQL = "UPDATE estacion SET numero=?, nombre=?, descripcion=?, latitud=?, longitud=? where id_estacion=?;";
 	public static final String deleteSQL = "DELETE FROM estacion WHERE id_estacion=?;";
+	public static final String deletePorSenderoSQL = 
+			"DELETE FROM estacion WHERE id_estacion IN (SELECT estacion.id_estacion FROM estacion JOIN sendero_estacion ON estacion.id_estacion = sendero_estacion.id_estacion WHERE sendero_estacion.id_sendero = ?);";
 	
 	public EstacionJB select(int id_estacion){
         Connection conn = null;
@@ -171,6 +173,31 @@ public class EstacionDAO {
 			
 			if(registros>0) {
 				System.out.println("Registro eliminado");
+			}
+			
+			Conexion.close(state);
+			Conexion.close(conn);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return registros;
+	}
+	
+	public int deletePorSendero(int id_sendero) {
+		Connection conn = null;
+		PreparedStatement state = null;
+		int registros = 0;
+		
+		try {
+			conn = Conexion.getConnection();
+			state = conn.prepareStatement(deletePorSenderoSQL);
+			
+			state.setInt(1,id_sendero);
+			registros = state.executeUpdate();
+			
+			if(registros>0) {
+				System.out.println("Registros eliminado");
 			}
 			
 			Conexion.close(state);

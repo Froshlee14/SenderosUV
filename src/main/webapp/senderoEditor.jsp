@@ -46,11 +46,27 @@
 		%>
 		
 		
-		<div class="w3-container w3-green">
-  			<h3>Información del sendero</h3>
-		</div>
 		<div>
-			<form class="w3-container" action="ServletSenderoGuardar" method="post" accept-charset="UTF-8">
+			<form class="w3-container" method="post" accept-charset="UTF-8" id="senderoForm">
+	
+	
+				<div class="w3-container w3-gray">
+		  			<h3>Información del sendero</h3>
+		  			
+			    	<button class="w3-btn w3-blue" type="submit" onclick="prepareSubmit('guardar')">
+				        <%= (sendero != null) ? "Actualizar" : "Guardar" %>
+				    </button>
+				    
+				    <% if (sendero != null) { %>
+				    
+				    <button class="w3-btn w3-red" type="submit" onclick="prepareSubmit('borrar')">
+				        Eliminar
+				    </button>
+				    
+				    <% } %>
+		  			
+				</div>
+
 	
 	    		<input id="id_sendero" type=hidden name="id_sendero" value="<%=id_sendero%>">    		
 	
@@ -80,14 +96,8 @@
 	    		
 	    		<label class="w3-text-blue" for="url_recursos">Recursos (URL):</label>
 	   			<input class="w3-input w3-border w3-round-largeqec" id="url_recursos" type="text"  value="<%=url_recursos%>" maxlength="255" name="url_recursos">
-		
-				<input class="w3-btn w3-blue" type="submit" value="<%= (sendero != null) ? "Actualizar" : "Guardar" %>">
+
 	    	</form>
-	    	
-	    	<form action="ServletSenderoBorrar" method="get" accept-charset="UTF-8">
-				<input id="id_sendero" type=hidden name="id_sendero" value="<%=id_sendero%>">
- 				<input type="submit" value="Eliminar" class="w3-button w3-red">
-    		</form>
     		
     	</div>
     	
@@ -126,5 +136,22 @@
     	}
 		%>
 	
+	
+	<script>
+	    function prepareSubmit(action) {
+	        var form = document.getElementById('senderoForm');
+	        
+	        if (action === 'guardar') {
+	            form.method = 'post';
+	            form.action = 'ServletSenderoGuardar';
+	        } else if (action === 'borrar') {
+	            form.method = 'get';
+	            form.action = 'ServletSenderoBorrar';
+	        }
+	        
+	        form.submit();
+	    }
+	</script>
+
 	</body>
 </html>

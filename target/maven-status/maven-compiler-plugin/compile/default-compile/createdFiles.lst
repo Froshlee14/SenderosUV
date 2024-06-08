@@ -11,6 +11,7 @@ datos\EstacionDAO.class
 modelo\ZonaJB.class
 datos\Conexion.class
 controlador\ServletLogin.class
+controlador\ServletEstacionBorrar.class
 modelo\Rol_UsuarioJB.class
 modelo\SenderoJB.class
 datos\ZonaDAO.class

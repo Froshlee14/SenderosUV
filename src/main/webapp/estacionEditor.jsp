@@ -17,32 +17,50 @@
 
 		<%@ include file="headerMenu.jsp" %>
 		
-		<form class="w3-container" action="ServletEstacionGuardar" method="post" accept-charset="UTF-8">
+		
+		<%
+			int id_sendero = (Integer) request.getAttribute("id_sendero");
+			int id_estacion = 0;
+			int numero = 0;
+			String nombre = "Nombre de estacion ejemplo";
+			String descripcion = "Esta es una descripcion breve de la estacion";
+			String latitud = "";
+			String longitud = "";
+			
+			EstacionJB estacion = (EstacionJB) request.getAttribute("estacion");
+			if (estacion != null) {
+				id_estacion = estacion.get_id_estacion();
+				numero = estacion.get_numero();
+				nombre = estacion.get_nombre();
+				descripcion = estacion.get_descripcion();
+				latitud = estacion.get_latitud();
+				longitud = estacion.get_longitud();
 				
-						<%
-							int id_sendero = (Integer) request.getAttribute("id_sendero");
-							int id_estacion = 0;
-							int numero = 0;
-							String nombre = "Nombre de estacion ejemplo";
-							String descripcion = "Esta es una descripcion breve de la estacion";
-							String latitud = "";
-							String longitud = "";
-							
-							EstacionJB estacion = (EstacionJB) request.getAttribute("estacion");
-							if (estacion != null) {
-								id_estacion = estacion.get_id_estacion();
-								numero = estacion.get_numero();
-								nombre = estacion.get_nombre();
-								descripcion = estacion.get_descripcion();
-								latitud = estacion.get_latitud();
-								longitud = estacion.get_longitud();
-								
-							}
-						
-						%>
+			}
+		
+		%>
+		
+		<form class="w3-container" id="estacionForm" method="post" accept-charset="UTF-8">
+		
+				<div class="w3-container w3-gray">
+		  			<h3>Información del estación</h3>
+		  			
+			    	<button class="w3-btn w3-blue" type="submit" onclick="prepareSubmit('guardar')">
+				        <%= (estacion != null) ? "Actualizar" : "Guardar" %>
+				    </button>
+				    
+				    <% if (estacion != null) { %>
+				    
+				    <button class="w3-btn w3-red" type="submit" onclick="prepareSubmit('borrar')">
+				        Eliminar
+				    </button>
+				    
+				    <% } %>
+		  			
+				</div>
 
-						<input id="id_sendero" type=text name="id_sendero" value="<%=id_sendero%>">  
-			    		<input id="id_estacion" type=text name="id_estacion" value="<%=id_estacion%>">  
+						<input id="id_sendero" type=hidden name="id_sendero" value="<%=id_sendero%>">  
+			    		<input id="id_estacion" type=hidden name="id_estacion" value="<%=id_estacion%>">  
 			    		
 						<label class="w3-text-blue" for="nombre">Nombre de la estacion:</label>
 		    			<input class="w3-input w3-border" id="nombre" type="text"  value="<%=nombre%>" maxlength="50" name="nombre">
@@ -58,11 +76,24 @@
 		    			
 			    		<label class="w3-text-blue" for="url_recursos">Longitud:</label>
 		    			<input class="w3-input w3-border" id="longitud" type="text"  value="<%=longitud%>" maxlength="20" name="longitud">
-	
- 					<input class="w3-btn w3-blue" type="submit" value="<%= (estacion != null) ? "Actualizar" : "Guardar" %>">
-				
+					
     		</form>
 
+	<script>
+	    function prepareSubmit(action) {
+	        var form = document.getElementById('estacionForm');
+	        
+	        if (action === 'guardar') {
+	            form.method = 'post';
+	            form.action = 'ServletEstacionGuardar';
+	        } else if (action === 'borrar') {
+	            form.method = 'get';
+	            form.action = 'ServletEstacionBorrar';
+	        }
+	        
+	        form.submit();
+	    }
+	</script>
 	
 	</body>
 </html>
