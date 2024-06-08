@@ -11,9 +11,10 @@
 	<head>
 		<title>SendinaUV</title>
 		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+		<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
 	</head>
 
-	<body>
+	<body class="w3-theme-l4">
 
 		<%@ include file="headerMenu.jsp" %>
 		
@@ -40,44 +41,46 @@
 		
 		%>
 		
-		<form class="w3-container" id="estacionForm" method="post" accept-charset="UTF-8">
+		<div class="w3-container w3-content">
 		
-				<div class="w3-container w3-gray">
-		  			<h3>Información del estación</h3>
-		  			
-			    	<button class="w3-btn w3-blue" type="submit" onclick="prepareSubmit('guardar')">
-				        <%= (estacion != null) ? "Actualizar" : "Guardar" %>
-				    </button>
-				    
-				    <% if (estacion != null) { %>
-				    
-				    <button class="w3-btn w3-red" type="submit" onclick="prepareSubmit('borrar')">
-				        Eliminar
-				    </button>
-				    
-				    <% } %>
-		  			
-				</div>
+		<p> </p>
+		<div class="w3-bar">
+		  
+		  <a href="#" class="w3-bar-item w3-button"> <b> Información del sendero </b> </a>
+		  <% if (estacion != null) { %>
+		  	<a href="#" class="w3-bar-item w3-button w3-hover-red w3-right" onclick="prepareSubmit('borrar')">Eliminar</a>
+		  <% } %>
+		  <a href="#" class="w3-bar-item w3-button w3-hover-blue w3-right" onclick="prepareSubmit('guardar')"><%= (estacion != null) ? "Actualizar" : "Guardar" %></a>
+		</div>
+		
+		<div class="w3-panel w3-white w3-card w3-display-container">
+ 		
+ 			<p></p>
+			<form class="w3-container" id="estacionForm" method="post" accept-charset="UTF-8">
 
-						<input id="id_sendero" type=hidden name="id_sendero" value="<%=id_sendero%>">  
-			    		<input id="id_estacion" type=hidden name="id_estacion" value="<%=id_estacion%>">  
-			    		
-						<label class="w3-text-blue" for="nombre">Nombre de la estacion:</label>
-		    			<input class="w3-input w3-border" id="nombre" type="text"  value="<%=nombre%>" maxlength="50" name="nombre">
-		    			
-		    			<label class="w3-text-blue" for="descripcion">Descripción:</label>
-		    			<input class="w3-input w3-border" id="descripcion" type="text" value="<%=descripcion%>" maxlength="200" name="descripcion" >	
+				<input id="id_sendero" type=hidden name="id_sendero" value="<%=id_sendero%>">  
+	    		<input id="id_estacion" type=hidden name="id_estacion" value="<%=id_estacion%>">  
+	    		
+				<label class="w3-text-blue" for="nombre">Nombre de la estacion:</label>
+    			<input class="w3-input w3-border" id="nombre" type="text"  value="<%=nombre%>" maxlength="50" name="nombre">
+    			
+    			<label class="w3-text-blue" for="descripcion">Descripción:</label>
+    			<input class="w3-input w3-border" id="descripcion" type="text" value="<%=descripcion%>" maxlength="200" name="descripcion" >	
 
-						<label class="w3-text-blue" for="nombre">Numero de estacion:</label>
-		    			<input class="w3-input w3-border" id="numero" type="number"  value="<%=numero%>" name="numero">
-			    		
-			    		<label class="w3-text-blue" for="url_recursos">Latitud:</label>
-		    			<input class="w3-input w3-border" id="latitud" type="text"  value="<%=latitud%>" maxlength="20" name="latitud">
-		    			
-			    		<label class="w3-text-blue" for="url_recursos">Longitud:</label>
-		    			<input class="w3-input w3-border" id="longitud" type="text"  value="<%=longitud%>" maxlength="20" name="longitud">
-					
+				<label class="w3-text-blue" for="nombre">Numero de estacion:</label>
+    			<input class="w3-input w3-border" id="numero" type="number"  value="<%=numero%>" name="numero">
+	    		
+	    		<label class="w3-text-blue" for="url_recursos">Latitud:</label>
+    			<input class="w3-input w3-border" id="latitud" type="text"  value="<%=latitud%>" maxlength="20" name="latitud">
+    			
+	    		<label class="w3-text-blue" for="url_recursos">Longitud:</label>
+    			<input class="w3-input w3-border" id="longitud" type="text"  value="<%=longitud%>" maxlength="20" name="longitud">
+			
     		</form>
+    		<p></p>
+    	</div>
+    		
+    </div>
 
 	<script>
 	    function prepareSubmit(action) {

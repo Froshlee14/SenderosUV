@@ -14,9 +14,10 @@
 	<head>
 		<title>SendinaUV</title>
 		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+		<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
 	</head>
 
-	<body>
+	<body  class="w3-theme-l4">
 
 		<%@ include file="headerMenu.jsp" %>
 		
@@ -45,28 +46,23 @@
 		
 		%>
 		
-		
-		<div>
-			<form class="w3-container" method="post" accept-charset="UTF-8" id="senderoForm">
-	
-	
-				<div class="w3-container w3-gray">
-		  			<h3>Información del sendero</h3>
-		  			
-			    	<button class="w3-btn w3-blue" type="submit" onclick="prepareSubmit('guardar')">
-				        <%= (sendero != null) ? "Actualizar" : "Guardar" %>
-				    </button>
-				    
-				    <% if (sendero != null) { %>
-				    
-				    <button class="w3-btn w3-red" type="submit" onclick="prepareSubmit('borrar')">
-				        Eliminar
-				    </button>
-				    
-				    <% } %>
-		  			
-				</div>
+		<div class="w3-container w3-content">
 
+		<p> </p>
+		<div class="w3-bar">
+		  
+		  <a href="#" class="w3-bar-item w3-button"> <b> Información del sendero </b> </a>
+		  <% if (sendero != null) { %>
+		  	<a href="#" class="w3-bar-item w3-button w3-hover-red w3-right" onclick="prepareSubmit('borrar')">Eliminar</a>
+		  <% } %>
+		  <a href="#" class="w3-bar-item w3-button w3-hover-blue w3-right" onclick="prepareSubmit('guardar')"><%= (sendero != null) ? "Actualizar" : "Guardar" %></a>
+		</div>
+		
+
+ 		<div class="w3-panel w3-white w3-card w3-display-container">
+ 		
+ 			<p></p>
+			<form class="w3-container" method="post" accept-charset="UTF-8" id="senderoForm">
 	
 	    		<input id="id_sendero" type=hidden name="id_sendero" value="<%=id_sendero%>">    		
 	
@@ -95,30 +91,52 @@
 	    		<input class="w3-input w3-border w3-round-large" id="year" type="date" value="<%=year%>" name="year" >
 	    		
 	    		<label class="w3-text-blue" for="url_recursos">Recursos (URL):</label>
-	   			<input class="w3-input w3-border w3-round-largeqec" id="url_recursos" type="text"  value="<%=url_recursos%>" maxlength="255" name="url_recursos">
+	   			<input class="w3-input w3-border w3-round-large" id="url_recursos" type="text"  value="<%=url_recursos%>" maxlength="255" name="url_recursos">
 
 	    	</form>
-    		
+    		<p> </p>
     	</div>
-    	
-    	<div class="w3-container w3-green">
-  			<h3>Estaciones</h3>
-		</div>
+		
     		
     	<%
     	if (id_sendero!=0){
 			@SuppressWarnings("unchecked")
 			List<EstacionJB> estaciones = (List<EstacionJB>) request.getAttribute("estaciones");
+			
+		%>
+		
+		<div class="w3-bar">
+		  
+			<a href="#" class="w3-bar-item w3-button"> <b> Estaciones </b> </a>
+		  
+			<form action="ServletEstacionCargar" method="get" accept-charset="UTF-8">
+				<input id="id_estacion" type=hidden name="id_estacion" value="0">
+				<input id="id_sendero" type=hidden name="id_sendero" value="<%=id_sendero%>">
+				<input type="submit" value="Agregar Estacion" class="w3-bar-item w3-button w3-hover-green w3-right">
+			</form>
+		  
+		</div>
+		
+		<%
+			
+			
 			if (estaciones != null && !estaciones.isEmpty() ) {
 				for (EstacionJB estacion : estaciones) {
 		%>
+		
+		 <div class="w3-panel w3-white w3-card w3-display-container">
 			<form action="ServletEstacionCargar" method="get" accept-charset="UTF-8">
+			
 				<input id="id_estacion" type=hidden name="id_estacion" value="<%=estacion.get_id_estacion()%>">
 				<input id="id_sendero" type=hidden name="id_sendero" value="<%=id_sendero%>">
-				<p><%out.print(estacion.get_nombre());%> </p>
- 				<input type="submit" value="Editar estacion" class="w3-button w3-grey">
+				
+				<p><b> <%out.print(estacion.get_nombre());%> </b></p>
+				
+				<p> <%out.print(estacion.get_descripcion());%> </p>
+				
+ 				<input type="submit" value="Editar" class="w3-button w3-hover-blue w3-display-topright">
     		</form>
-			<p> </p>
+		</div>
 			 
 		<%
 				}
@@ -126,15 +144,11 @@
 			else {
 				out.print("Este sendero no tiene estaciones");
 			}
-			%>
-			<form action="ServletEstacionCargar" method="get" accept-charset="UTF-8">
-				<input id="id_estacion" type=hidden name="id_estacion" value="0">
-				<input id="id_sendero" type=hidden name="id_sendero" value="<%=id_sendero%>">
-					<input type="submit" value="Agregar Estacion" class="w3-button w3-blue">
-			</form>
-			<%
+
     	}
 		%>
+		
+		</div>
 	
 	
 	<script>
