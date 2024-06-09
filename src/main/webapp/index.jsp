@@ -13,7 +13,7 @@
 
 	<body>
 	
-	<%@ include file="headerMenu.jsp" %>
+	<%@ include file="header_01.jsp" %>
 	<p>	
 Los Senderos Interpretativos son espacios que permiten tener un contacto directo con 
 los visitantes para el desarrollo de una temática o un tópico particular y así, transmitir 

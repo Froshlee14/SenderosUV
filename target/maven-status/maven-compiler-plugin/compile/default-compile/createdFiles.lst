@@ -14,4 +14,5 @@ controlador\ServletLogin.class
 controlador\ServletEstacionBorrar.class
 modelo\Rol_UsuarioJB.class
 modelo\SenderoJB.class
+controlador\ServletSenderoVer.class
 datos\ZonaDAO.class

@@ -14,7 +14,7 @@ public class EstacionDAO {
 	
 	public static final String selectSQL = "SELECT * from estacion where id_estacion=?;";
 	public static final String selectPorSenderoSQL = 
-			"SELECT estacion.id_estacion, estacion.numero, estacion.nombre, estacion.descripcion, estacion.latitud, estacion.longitud FROM  estacion JOIN sendero_estacion ON estacion.id_estacion = sendero_estacion.id_estacion JOIN sendero ON sendero_estacion.id_sendero = sendero.id_sendero where sendero.id_sendero = ?;";
+			"SELECT estacion.id_estacion, estacion.numero, estacion.nombre, estacion.descripcion, estacion.latitud, estacion.longitud FROM  estacion JOIN sendero_estacion ON estacion.id_estacion = sendero_estacion.id_estacion JOIN sendero ON sendero_estacion.id_sendero = sendero.id_sendero where sendero.id_sendero = ? ORDER BY estacion.numero ASC;";
 	public static final String insertSQL = "INSERT INTO estacion (numero, nombre, descripcion,latitud,longitud) VALUES (?,?,?,?,?);";
 	public static final String updateSQL = "UPDATE estacion SET numero=?, nombre=?, descripcion=?, latitud=?, longitud=? where id_estacion=?;";
 	public static final String deleteSQL = "DELETE FROM estacion WHERE id_estacion=?;";

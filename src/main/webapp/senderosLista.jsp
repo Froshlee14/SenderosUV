@@ -9,13 +9,11 @@
 
 	<head>
 		<title>SendinaUV</title>
-		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-		<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
 	</head>
 
 	<body class="w3-theme-l4">
 
-		<%@ include file="headerMenu.jsp" %>
+		<%@ include file="header_01.jsp" %>
 		
 		<div class="w3-container w3-padding-32 w3-theme-d1">
 			<h1>Senderos interpetativos</h1>
@@ -39,16 +37,24 @@
 		%>
 		
 		<div class="w3-third w3-section ">
+			<div class="w3-container w3-white w3-round-large w3-border w3-display-container">
 				<form action="ServletSenderoCargar" method="get" accept-charset="UTF-8">
 					<input id="id_sendero" type=hidden name="id_sendero" value="<%=sendero.get_id_sendero()%>">
+					<input type="submit" value="Editar" class="w3-button w3-hover-blue w3-display-topright">
+				</form>
 					
-					<div class="w3-container w3-white w3-round-large w3-border w3-display-container">
-						<h4> <%out.print(sendero.get_nombre());%> </h4>
-						<img src="<%= logo_url %>" style="width:100%; height:200px;">
-						<input type="submit" value="Editar" class="w3-button w3-hover-blue w3-display-topright">
-					</div>
 					
-    			</form>
+				<h4> <%out.print(sendero.get_nombre());%> </h4>
+				<img src="<%= logo_url %>" style="width:100%; height:250px;">
+				
+				<p></p>
+				<form action="ServletSenderoVer" method="get" accept-charset="UTF-8">
+					<input id="id_sendero" type=hidden name="id_sendero" value="<%=sendero.get_id_sendero()%>">
+					<input type="submit" value="Ver sendero" class="w3-button w3-blue w3-hover-light-gray w3-display-bottommiddle">
+				</form>
+				
+						
+			</div>		
 		</div>
 			 
 		<%

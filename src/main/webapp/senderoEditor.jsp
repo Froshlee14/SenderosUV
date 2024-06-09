@@ -13,13 +13,11 @@
 
 	<head>
 		<title>SendinaUV</title>
-		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-		<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
 	</head>
 
 	<body  class="w3-theme-l4">
 
-		<%@ include file="headerMenu.jsp" %>
+		<%@ include file="header_02.jsp" %>
 		
 		<%
 			int id_sendero = 0;
