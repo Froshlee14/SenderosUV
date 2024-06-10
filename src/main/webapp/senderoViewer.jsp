@@ -108,7 +108,7 @@
 				<p></p>
 				<div class="w3-cell-row">
 	 		
-	 				<div id="info" class="w3-container w3-light-grey w3-cell">
+	 				<div id="info" class="w3-container w3-light-blue w3-cell">
 					<!--Aqui va la info -->
 						<% if (estaciones != null && !estaciones.isEmpty()) { %>
 	                        <% for (int i = 0; i < estaciones.size(); i++) { 

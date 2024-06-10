@@ -6,7 +6,6 @@
 
 <html>
 
-
 	<head>
 		<title>SendinaUV</title>
 	</head>
@@ -15,14 +14,14 @@
 
 		<%@ include file="header_01.jsp" %>
 		
-		<div class="w3-container w3-padding-32 w3-theme-d1 w3-cell-row">
-			<div class="w3-container w3-cell">
+		<div class="w3-bar w3-theme-d1 w3-border w3-light-grey w3-display-container">
+			<div class="w3-container w3-bar-item">
 				<h1>Senderos interpetativos</h1>
 			</div>
-			<div class="w3-container w3-cell">
+			<div class="w3-container w3-bar-item w3-display-right">
 				<form action="ServletSenderoCargar" method="get" accept-charset="UTF-8">
 					<input id="id_sendero" type=hidden name="id_sendero" value="0">
- 					<input type="submit" value="Agregar Sendero" class="w3-button w3-white">
+ 					<input type="submit" value="Agregar Sendero" class="w3-button w3-light-blue w3-hover-light-gray w3-round">
     			</form>
     		</div>
 		</div>
