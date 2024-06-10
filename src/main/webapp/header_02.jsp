@@ -23,12 +23,12 @@ if (usuario != null) {
       </button>
       <div id="demo" class="w3-dropdown-content w3-bar-block w3-card" style="display:none;right:0">
         <a href="#" class="w3-bar-item w3-button">Iniciar sesion</a>
-        <a href="#" class="w3-bar-item w3-button">Editar senderos</a>
         <a href="#" class="w3-bar-item w3-button">Editar usuarios</a>
       </div>
     </div>
    
 	<a class="w3-bar-item w3-text-gray" ><%=mensaje%></a>
+	<a href="ServletSenderoLista" class="w3-bar-item w3-button w3-right w3-hover-blue">Senderos</a>
 </div>
 
 <jsp:useBean id="usuarios" class="modelo.UsuarioJB" scope="request" />

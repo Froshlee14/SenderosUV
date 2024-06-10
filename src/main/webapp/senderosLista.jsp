@@ -15,16 +15,21 @@
 
 		<%@ include file="header_01.jsp" %>
 		
-		<div class="w3-container w3-padding-32 w3-theme-d1">
-			<h1>Senderos interpetativos</h1>
+		<div class="w3-container w3-padding-32 w3-theme-d1 w3-cell-row">
+			<div class="w3-container w3-cell">
+				<h1>Senderos interpetativos</h1>
+			</div>
+			<div class="w3-container w3-cell">
+				<form action="ServletSenderoCargar" method="get" accept-charset="UTF-8">
+					<input id="id_sendero" type=hidden name="id_sendero" value="0">
+ 					<input type="submit" value="Agregar Sendero" class="w3-button w3-white">
+    			</form>
+    		</div>
 		</div>
 		
 		<div class="w3-row-padding">
 		
-		<form action="ServletSenderoCargar" method="get" accept-charset="UTF-8">
-			<input id="id_sendero" type=hidden name="id_sendero" value="0">
- 			<input type="submit" value="Agregar Sendero" class="w3-button w3-blue">
-    	</form>
+
 
 		<%
 		@SuppressWarnings("unchecked")
