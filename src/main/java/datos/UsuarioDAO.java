@@ -15,7 +15,7 @@ public class UsuarioDAO {
 	public static final String selectSQL = 
 			"SELECT usuario.nombre, usuario.contrasena, usuario.id_rol_usuario, rol_usuario.rol_usuario FROM  usuario JOIN rol_usuario ON usuario.id_rol_usuario = rol_usuario.id_rol_usuario WHERE id_usuario = ?;";
 	public static final String selectAllSQL = 
-			"SELECT usuario.nombre, usuario.contrasena, usuario.id_rol_usuario, rol_usuario.rol_usuario FROM  usuario JOIN rol_usuario ON usuario.id_rol_usuario = rol_usuario.id_rol_usuario ORDER BY rol_usuario.rol_usuario;";
+			"SELECT usuario.id_usuario, usuario.nombre, usuario.contrasena, usuario.id_rol_usuario, rol_usuario.rol_usuario FROM  usuario JOIN rol_usuario ON usuario.id_rol_usuario = rol_usuario.id_rol_usuario ORDER BY rol_usuario.rol_usuario;";
 	public static final String selectPorRolSQL = 
 			"SELECT usuario.id_usuario, usuario.nombre, usuario.id_rol_usuario, rol_usuario.rol_usuario FROM  usuario JOIN rol_usuario ON usuario.id_rol_usuario = rol_usuario.id_rol_usuario WHERE id_rol_usuario = ?;";
 	public static final String selectPorNombreSQL = 
