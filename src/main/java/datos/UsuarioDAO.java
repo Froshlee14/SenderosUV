@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +14,8 @@ public class UsuarioDAO {
 
 	public static final String selectSQL = 
 			"SELECT usuario.nombre, usuario.contrasena, usuario.id_rol_usuario, rol_usuario.rol_usuario FROM  usuario JOIN rol_usuario ON usuario.id_rol_usuario = rol_usuario.id_rol_usuario WHERE id_usuario = ?;";
+	public static final String selectAllSQL = 
+			"SELECT usuario.nombre, usuario.contrasena, usuario.id_rol_usuario, rol_usuario.rol_usuario FROM  usuario JOIN rol_usuario ON usuario.id_rol_usuario = rol_usuario.id_rol_usuario ORDER BY rol_usuario.rol_usuario;";
 	public static final String selectPorRolSQL = 
 			"SELECT usuario.id_usuario, usuario.nombre, usuario.id_rol_usuario, rol_usuario.rol_usuario FROM  usuario JOIN rol_usuario ON usuario.id_rol_usuario = rol_usuario.id_rol_usuario WHERE id_rol_usuario = ?;";
 	public static final String selectPorNombreSQL = 
@@ -68,13 +71,48 @@ public class UsuarioDAO {
             conn = Conexion.getConnection();
             state = conn.prepareStatement(selectPorRolSQL);
             
-            state.setInt(1,id_rol_usuario);
+            //state.setInt(1,id_rol_usuario);
             
 			result = state.executeQuery();
 			
 			while(result.next()) {
 				int id_usuario = result.getInt("id_usuario");
 				String nombre = result.getString("nombre");
+				String rol_usuario = result.getString("rol_usuario");
+				//boolean status = result.getBoolean("status");
+				
+				System.out.println("registro encontrado");
+				usuario = new UsuarioJB(id_usuario,nombre,id_rol_usuario,rol_usuario);
+				lista_usuarios.add(usuario);
+			}
+			Conexion.close(result);
+			Conexion.close(state);
+			Conexion.close(conn);
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return lista_usuarios;
+	}
+	
+	public List<UsuarioJB>  selectAll(){
+        Connection conn = null;
+        Statement state = null;
+        ResultSet result = null;
+        UsuarioJB usuario = null;
+		
+		List<UsuarioJB> lista_usuarios = new ArrayList<>();
+		
+		try {
+            conn = Conexion.getConnection();
+            state = conn.createStatement();
+			result = state.executeQuery(selectAllSQL);
+			
+			while(result.next()) {
+				int id_usuario = result.getInt("id_usuario");
+				String nombre = result.getString("nombre");
+				int id_rol_usuario = result.getInt("id_rol_usuario");
 				String rol_usuario = result.getString("rol_usuario");
 				//boolean status = result.getBoolean("status");
 				

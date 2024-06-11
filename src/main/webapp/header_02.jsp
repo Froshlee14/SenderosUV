@@ -34,11 +34,16 @@ if (usuario != null) {
         	<button type="submit" class="w3-bar-item w3-button w3-hover-blue">Cerrar sesion</button>
         </form> 
         
+        <% 
+			if (usuario.get_rol_usuario().equals("Administrador")){
+		%>
+        
         <form action="ServletUsuarioLista" method="get">
         	<button type="submit" class="w3-bar-item w3-button w3-hover-blue">Gestionar usuarios</button>
         </form>
 		
 		<% 
+			}
 		}
 		
 		%>

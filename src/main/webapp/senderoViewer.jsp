@@ -12,6 +12,9 @@
 	<head>
 		<title>SendinaUV</title>
 	</head>
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
 	<style>
 		#map {
 	    	height: 500px; /* The height is 400 pixels */
@@ -127,13 +130,25 @@
 	 					<div id="map" class="w3-container">
 						<!--Aqui va el mapa --> 
 	 					</div>
-	 					<div id="navbar" class="w3-center w3-container w3-large w3-blue" style="width:100%">
+	 					<div id="navbar" class="w3-center w3-container w3-blue" style="width:100%">
 <!-- 						  <div class=" " style="width:100%"> -->
-						    <button class="w3-button w3-left" onclick="plusDivs(-1)">&#10094; Prev</button>
-  							<button class="w3-button w3-right" onclick="plusDivs(1)">Next &#10095;</button>
-  							<% for (int i = 0; i < estaciones.size(); i++) { %>
-                            	<button class="w3-button demo" onclick="currentDiv(<%= i + 1 %>)"><%= i + 1 %></button>
-                        	<% } %>
+						    <button class="w3-button w3-left" onclick="plusDivs(-1)"> &#10094; </button>
+  							<button class="w3-button w3-right" onclick="plusDivs(1)"> &#10095;</button>
+  							<% 
+  							for (int i = 0; i < estaciones.size(); i++) { 
+  								if (i!=0){
+  							%>
+                           		<i class="fa fa-circle demo w3-button w3-hover-blue w3-hover-text-light-blue w3-blue" onclick="currentDiv(<%= i + 1 %>)"></i>  
+                        	<% 
+  								}
+  								else{
+  							%>
+  	                        	<i class="fa fa-home demo w3-button w3-hover-blue w3-hover-text-light-blue w3-blue" onclick="currentDiv(<%= i + 1 %>)"></i>  
+  	                        <% 	
+  									
+  								}
+  							}                         	
+                        	%>
 <!-- 						  </div> -->
 	 					</div>
 	 					
@@ -193,7 +208,7 @@
     const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
 
     // Configuracion del mapa
-    const zoom = 18
+    const zoom = 20
     map = new Map(document.getElementById("map"), {
 
       zoom: zoom,
@@ -258,10 +273,10 @@
 	    x[i].style.display = "none";  
 	  }
 	  for (i = 0; i < dots.length; i++) {
-	    dots[i].className = dots[i].className.replace(" w3-white", "");
+	    dots[i].className = dots[i].className.replace(" w3-text-black", "");
 	  }
 	  x[slideIndex-1].style.display = "block";  
-	  dots[slideIndex-1].className += " w3-white";
+	  dots[slideIndex-1].className += " w3-text-black";
 	  
 	  const estacion = estaciones[slideIndex - 1];
       centerMap(estacion.latitud, estacion.longitud);
