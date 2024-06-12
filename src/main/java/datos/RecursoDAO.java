@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,13 +13,9 @@ import modelo.RecursoJB;
 public class RecursoDAO {
 	
 	public static final String selectSQL = "SELECT * from recurso where id_recurso=?;";
-	public static final String selectPorEstacionSQL = "SELECT"
-			+ "recurso.id_recurso,recurso.numero, recurso.url, recurso.creditos, recurso.id_tipo_recurso, tipo_recurso.tipo "
-			+ "FROM  estacion JOIN estacion_recurso ON estacion.id_estacion = estacion_recurso.id_estacion"
-			+ "JOIN recurso ON estacion_recurso.id_recurso = recurso.id_recurso"
-			+ "JOIN tip_recurso ON recurso.id_tipo_recurso = tipo_recurso.id_tipo_recurso"
-			+ " where estacion.id_estacion = ?;";
-	public static final String insertSQL = "INSERT INTO recurso (numero,url, creditos, tipo_recurso) VALUES (?,?,?,?);";
+	public static final String selectPorEstacionSQL = 
+			"SELECT recurso.id_recurso,recurso.numero, recurso.url, recurso.creditos, recurso.id_tipo_recurso, tipo_recurso.tipo FROM  estacion JOIN estacion_recurso ON estacion.id_estacion = estacion_recurso.id_estacion JOIN recurso ON estacion_recurso.id_recurso = recurso.id_recurso JOIN tipo_recurso ON recurso.id_tipo_recurso = tipo_recurso.id_tipo_recurso where estacion.id_estacion = ? ORDER BY recurso.numero ASC;";
+	public static final String insertSQL = "INSERT INTO recurso (numero,url, creditos, id_tipo_recurso) VALUES (?,?,?,?);";
 	public static final String updateSQL = "UPDATE recurso SET  numero=?, url=?, creditos=?, id_tipo_recurso=? where id_recurso=?;";
 	public static final String deleteSQL = "DELETE FROM recurso WHERE id_recurso=?;";
 
@@ -58,7 +55,7 @@ public class RecursoDAO {
 		return recurso;
 	}
 	
-	public List<RecursoJB>  selectPorCartel(int id_cartel){
+	public List<RecursoJB>  selectPorEstacion(int id_estacion){
         Connection conn = null;
         PreparedStatement state = null;
         ResultSet result = null;
@@ -70,7 +67,7 @@ public class RecursoDAO {
             conn = Conexion.getConnection();
             state = conn.prepareStatement(selectPorEstacionSQL);
             
-            state.setInt(1,id_cartel);
+            state.setInt(1,id_estacion);
             
 			result = state.executeQuery();
 			
@@ -102,19 +99,25 @@ public class RecursoDAO {
 		Connection conn = null;
 		PreparedStatement state = null;
 		int registros = 0;
+		int id_generado = 0;
 		
 		try {
 			conn = Conexion.getConnection();
-			state = conn.prepareStatement(insertSQL);
+			state = conn.prepareStatement(insertSQL, Statement.RETURN_GENERATED_KEYS);
 			
-			state.setInt(3,recurso.get_numero());
-			state.setString(1,recurso.get_url());
-			state.setString(2,recurso.get_creditos());
-			state.setInt(3,recurso.get_id_tipo_recurso());
+			state.setInt(1,recurso.get_numero());
+			state.setString(2,recurso.get_url());
+			state.setString(3,recurso.get_creditos());
+			state.setInt(4,recurso.get_id_tipo_recurso());
 			
 			registros = state.executeUpdate();
 			if(registros>0) {
 				System.out.println("Registro agregado correctamente");
+				ResultSet generatedKeys = state.getGeneratedKeys();
+		        if (generatedKeys.next()) {
+		        	id_generado = generatedKeys.getInt(1);
+		        	System.out.println("ID generada: " + id_generado);
+		        }
 			}
 			
 			Conexion.close(state);
@@ -123,7 +126,7 @@ public class RecursoDAO {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		return registros;
+		return id_generado;
 	}
 	
 	public int update(RecursoJB recurso) {
@@ -135,10 +138,11 @@ public class RecursoDAO {
 			conn = Conexion.getConnection();
 			state = conn.prepareStatement(updateSQL);
 			
-			state.setString(1,recurso.get_url());
-			state.setString(2,recurso.get_creditos());
-			state.setInt(3,recurso.get_id_tipo_recurso());
-			state.setInt(4,recurso.get_id_recurso());
+			state.setInt(1,recurso.get_numero());
+			state.setString(2,recurso.get_url());
+			state.setString(3,recurso.get_creditos());
+			state.setInt(4,recurso.get_id_tipo_recurso());
+			state.setInt(5,recurso.get_id_recurso());
 			
 			registros = state.executeUpdate();
 			if(registros>0)

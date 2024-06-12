@@ -90,7 +90,7 @@
 				<label class="w3-text-blue" for="year">Año de creación:</label>
 	    		<input class="w3-input w3-border w3-round-large" id="year" type="date" value="<%=year%>" name="year" >
 	    		
-	    		<label class="w3-text-blue" for="url_recursos">Recursos (URL):</label>
+	    		<label class="w3-text-blue" for="url_recursos">Ruta de logotipo:</label>
 	   			<input class="w3-input w3-border w3-round-large" id="url_recursos" type="text"  value="<%=url_recursos%>" maxlength="255" name="url_recursos">
 
 	    	</form>

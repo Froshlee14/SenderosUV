@@ -22,6 +22,24 @@ CREATE TABLE zona_sendero(
 	FOREIGN KEY (id_sendero) REFERENCES sendero(id_sendero) ON DELETE CASCADE
 );
 
+CREATE TABLE tipo_recurso (
+	id_tipo_recurso SERIAL,
+	tipo VARCHAR (20),
+	
+	PRIMARY KEY (id_tipo_recurso)
+);
+
+CREATE TABLE recurso (
+	id_recurso SERIAL,
+	numero INT,
+	url VARCHAR (100),
+    creditos varchar (100),
+    id_tipo_recurso INT,
+    
+	PRIMARY KEY (id_recurso),
+    FOREIGN KEY (id_tipo_recurso) REFERENCES tipo_recurso(id_tipo_recurso)
+);
+
 CREATE TABLE estacion(
 	id_estacion SERIAL,
 	numero INT,
@@ -32,6 +50,13 @@ CREATE TABLE estacion(
 	PRIMARY KEY (id_estacion)
 );
 
+CREATE TABLE  estacion_recurso(
+	id_estacion INT,
+	id_recurso INT,
+	
+	FOREIGN KEY (id_estacion) REFERENCES estacion(id_estacion) ON DELETE CASCADE,
+	FOREIGN KEY (id_recurso) REFERENCES recurso(id_recurso) ON DELETE CASCADE
+);
 
 CREATE TABLE sendero_estacion(
 	id_sendero INT,
@@ -75,13 +100,23 @@ VALUES
     ('Orizaba-Córdoba'),
     ('Poza Rica-Tuxpan'),
     ('Coatzacoalcos-Minatitlán');
+	
+INSERT INTO tipo_recurso (tipo) 
+VALUES
+	('Imagen'),
+	('Video'),
+	('PDF'),
+	('Musica');
 
 /*
 
 DROP TABLE usuario;
 DROP TABLE rol_usuario;
 DROP TABLE sendero_estacion;
+DROP TABLE estacion_recurso;
 DROP TABLE estacion;
+DROP TABLE recurso;
+DROP TABLE tipo_recurso;
 DROP TABLE zona_sendero;
 DROP TABLE sendero;
 DROP TABLE zona;

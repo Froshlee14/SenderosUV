@@ -1,6 +1,9 @@
 package controlador;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import datos.EstacionDAO;
 import modelo.EstacionJB;
+import datos.RecursoDAO;
+import modelo.RecursoJB;
 
 @WebServlet("/ServletEstacionCargar")
 
@@ -27,12 +32,19 @@ private static final long serialVersionUID = 1L;
 	  	
 	  	int id_estacion = Integer.parseInt(request.getParameter(("id_estacion")));
 	  	int id_sendero = Integer.parseInt(request.getParameter(("id_sendero")));
+	  	
+	  	List<RecursoJB> recursos = new ArrayList<>();
 	  		
 	  	if (id_estacion!=0) {
 		    estacion = estaciondao.select(id_estacion);
 		    request.setAttribute("estacion", estacion);
 		    
+		    RecursoDAO recursodao = new RecursoDAO();
+			recursos = recursodao.selectPorEstacion(id_estacion);	
+		    
 	  	}
+	  	
+	  	request.setAttribute("recursos",recursos);
 	    request.setAttribute("id_sendero", id_sendero);
 	    
 	    RequestDispatcher dispatcher = request.getRequestDispatcher("estacionEditor.jsp");

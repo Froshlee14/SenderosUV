@@ -9,7 +9,9 @@ C:\Users\sheld\Desktop\senderosUV\src\main\java\modelo\UsuarioJB.java
 C:\Users\sheld\Desktop\senderosUV\src\main\java\datos\SenderoDAO.java
 C:\Users\sheld\Desktop\senderosUV\src\main\java\datos\TipoRecursoDAO.java
 C:\Users\sheld\Desktop\senderosUV\src\main\java\modelo\TipoRecursoJB.java
+C:\Users\sheld\Desktop\senderosUV\src\main\java\controlador\ServletRecursoGuardar.java
 C:\Users\sheld\Desktop\senderosUV\src\main\java\modelo\EstacionRecursoJB.java
+C:\Users\sheld\Desktop\senderosUV\src\main\java\controlador\ServletRecursoBorrar.java
 C:\Users\sheld\Desktop\senderosUV\src\main\java\modelo\Rol_UsuarioJB.java
 C:\Users\sheld\Desktop\senderosUV\src\main\java\controlador\ServletEstacionGuardar.java
 C:\Users\sheld\Desktop\senderosUV\src\main\java\datos\EstacionDAO.java
@@ -23,6 +25,7 @@ C:\Users\sheld\Desktop\senderosUV\src\main\java\controlador\ServletUsuarioGuarda
 C:\Users\sheld\Desktop\senderosUV\src\main\java\controlador\ServletLogin.java
 C:\Users\sheld\Desktop\senderosUV\src\main\java\controlador\ServletSenderoVer.java
 C:\Users\sheld\Desktop\senderosUV\src\main\java\datos\RecursoDAO.java
+C:\Users\sheld\Desktop\senderosUV\src\main\java\controlador\ServletRecursoCargar.java
 C:\Users\sheld\Desktop\senderosUV\src\main\java\controlador\ServletSenderoLista.java
 C:\Users\sheld\Desktop\senderosUV\src\main\java\controlador\ServletUsuarioLista.java
 C:\Users\sheld\Desktop\senderosUV\src\main\java\datos\ZonaDAO.java

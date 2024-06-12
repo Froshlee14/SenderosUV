@@ -64,7 +64,7 @@ public class TipoRecursoDAO {
 			
 			while(result.next()) {
 				int id_tipo_recurso = result.getInt("id_tipo_recurso");
-				String recurso = result.getString("recruso");
+				String recurso = result.getString("tipo");
 				
 				tipo_recurso = new TipoRecursoJB(id_tipo_recurso,recurso);
 				lista_tipo_recursos.add(tipo_recurso);

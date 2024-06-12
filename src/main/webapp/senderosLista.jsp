@@ -50,7 +50,7 @@
 		if (lista != null) {
 			for (SenderoJB sendero : lista) {
 				String url_recursos = sendero.get_url_recursos();
-				String logo_url = request.getContextPath() + "/" + url_recursos + "/logo.png";
+				String logo_url = request.getContextPath() + "/senderos/" + url_recursos;
 				//out.print(logo_url);
 				
 		%>
