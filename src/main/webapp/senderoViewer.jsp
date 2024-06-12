@@ -31,27 +31,27 @@
 		.w3-badge {height:13px;width:13px;padding:0}
 
 
-.price-tag {
-  background-color: #4285F4;
-  border-radius: 8px;
-  color: #FFFFFF;
-  font-size: 14px;
-  padding: 10px 15px;
-  position: relative;
-}
-
-.price-tag::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 100%;
-  transform: translate(-50%, 0);
-  width: 0;
-  height: 0;
-  border-left: 8px solid transparent;
-  border-right: 8px solid transparent;
-  border-top: 8px solid #4285F4;
-}
+		.price-tag {
+		  background-color: #4285F4;
+		  border-radius: 8px;
+		  color: #FFFFFF;
+		  font-size: 14px;
+		  padding: 10px 15px;
+		  position: relative;
+		}
+		
+		.price-tag::after {
+		  content: "";
+		  position: absolute;
+		  left: 50%;
+		  top: 100%;
+		  transform: translate(-50%, 0);
+		  width: 0;
+		  height: 0;
+		  border-left: 8px solid transparent;
+		  border-right: 8px solid transparent;
+		  border-top: 8px solid #4285F4;
+		}
 
 
 	</style>
@@ -103,62 +103,56 @@
     	
 		%>
 		
-		<div class="w3-container w3-content">
-		
-			<p> <b> <%=nombre%> </b> </p>
+		<%--<p> <b> <%=nombre%> </b> </p> --%>
 			
-			<div class="w3-panel w3-white w3-card w3-display-container">
-				<p></p>
-				<div class="w3-cell-row">
-	 		
-	 				<div id="info" class="w3-container w3-light-blue w3-cell">
-					<!--Aqui va la info -->
-						<% if (estaciones != null && !estaciones.isEmpty()) { %>
-	                        <% for (int i = 0; i < estaciones.size(); i++) { 
-	                            EstacionJB estacion = estaciones.get(i); %>
-	                            <div class="mySlides" style="display: none;">
-	                                <h3><%= estacion.get_nombre() %></h3>
-	                                <p>Latitud: <%= estacion.get_latitud() %></p>
-	                                <p>Longitud: <%= estacion.get_longitud() %></p>
-	                                <p>Descripción: <%= estacion.get_descripcion() %></p>
-	                            </div>
-	                        <% } %>
-	                    <% } %>
-	 				</div>
-	 				
-	 				<div class="w3-light-grey w3-cell">
-	 					<div id="map" class="w3-container">
-						<!--Aqui va el mapa --> 
-	 					</div>
-	 					<div id="navbar" class="w3-center w3-container w3-blue" style="width:100%">
+			<div class="w3-cell-row">
+ 		
+ 				<div id="info" class="w3-container w3-light-blue w3-cell">
+				<!--Aqui va la info -->
+					<% if (estaciones != null && !estaciones.isEmpty()) { %>
+                        <% for (int i = 0; i < estaciones.size(); i++) { 
+                            EstacionJB estacion = estaciones.get(i); %>
+                            <div class="mySlides" style="display: none;">
+                                <h3><%= estacion.get_nombre() %></h3>
+                                <p>Latitud: <%= estacion.get_latitud() %></p>
+                                <p>Longitud: <%= estacion.get_longitud() %></p>
+                                <p>Descripción: <%= estacion.get_descripcion() %></p>
+                            </div>
+                        <% } %>
+                    <% } %>
+ 				</div>
+ 				
+ 				<div class="w3-light-grey w3-cell">
+ 					<div id="map" class="w3-container">
+					<!--Aqui va el mapa --> 
+ 					</div>
+ 					<div id="navbar" class="w3-center w3-container w3-blue" style="width:100%">
 <!-- 						  <div class=" " style="width:100%"> -->
-						    <button class="w3-button w3-left" onclick="plusDivs(-1)"> &#10094; </button>
-  							<button class="w3-button w3-right" onclick="plusDivs(1)"> &#10095;</button>
-  							<% 
-  							for (int i = 0; i < estaciones.size(); i++) { 
-  								if (i!=0){
-  							%>
-                           		<i class="fa fa-circle demo w3-button w3-hover-blue w3-hover-text-light-blue w3-blue" onclick="currentDiv(<%= i + 1 %>)"></i>  
-                        	<% 
-  								}
-  								else{
-  							%>
-  	                        	<i class="fa fa-home demo w3-button w3-hover-blue w3-hover-text-light-blue w3-blue" onclick="currentDiv(<%= i + 1 %>)"></i>  
-  	                        <% 	
-  									
-  								}
-  							}                         	
-                        	%>
-<!-- 						  </div> -->
-	 					</div>
-	 					
-	 				</div>
-	    		</div>
-	    		<p></p>
-	    	
-	    	</div>
+					    <button class="w3-button w3-left" onclick="plusDivs(-1)"> &#10094; </button>
+ 							<button class="w3-button w3-right" onclick="plusDivs(1)"> &#10095;</button>
+ 							<% 
+ 							for (int i = 0; i < estaciones.size(); i++) { 
+ 								if (i!=0){
+ 							%>
+                          		<i class="fa fa-circle demo w3-button w3-hover-blue w3-hover-text-light-blue w3-blue" onclick="currentDiv(<%= i + 1 %>)"></i>  
+                       	<% 
+ 								}
+ 								else{
+ 							%>
+ 	                        	<i class="fa fa-home demo w3-button w3-hover-blue w3-hover-text-light-blue w3-blue" onclick="currentDiv(<%= i + 1 %>)"></i>  
+ 	                        <% 	
+ 									
+ 								}
+ 							}                         	
+                       	%>
+
+ 					</div>
+ 					
+ 				</div>
+    		</div>
+    	
+ 
     		
-    	</div>
 
 
 <script>

@@ -14,6 +14,8 @@
 	<head>
 		<title>SendinaUV</title>
 	</head>
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 	<body  class="w3-theme-l4">
 
@@ -119,10 +121,20 @@
 			
 			
 			if (estaciones != null && !estaciones.isEmpty() ) {
+				int n_estaciones = estaciones.size();
+			    int contador = 0;
 				for (EstacionJB estacion : estaciones) {
 		%>
 		
 		 <div class="w3-panel w3-white w3-card w3-display-container">
+		 
+		 <div class="w3-row">
+		 
+		 	<div class="w3-col" style="width:auto">
+		 		<p><b> <%out.print("#"+estacion.get_numero()+":");%> </b></p>
+		 	</div>
+		 	
+		 	<div class="w3-rest">
 			<form action="ServletEstacionCargar" method="get" accept-charset="UTF-8">
 			
 				<input id="id_estacion" type=hidden name="id_estacion" value="<%=estacion.get_id_estacion()%>">
@@ -134,9 +146,13 @@
 				
  				<input type="submit" value="Editar" class="w3-button w3-hover-blue w3-display-topright">
     		</form>
+    		</div>
+		
+		</div>
 		</div>
 			 
 		<%
+				contador++;
 				}
 			}
 			else {
