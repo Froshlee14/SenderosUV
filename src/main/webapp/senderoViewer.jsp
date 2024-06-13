@@ -5,6 +5,8 @@
 <%@ page import="modelo.UsuarioJB"%>
 <%@ page import="modelo.SenderoJB"%>
 <%@ page import="modelo.EstacionJB"%>
+<%@ page import="modelo.RecursoJB"%>
+<%@ page import="java.util.ArrayList;"%>
 <!DOCTYPE html>
 
 <html>
@@ -65,7 +67,7 @@
 			int id_sendero = 0;
 			String nombre = "Sendero nombre ejemplo";
 			String sede = "Sendero sede ejemplo";
-			String year = "2024-04-11";
+			int year = 2024;
 			int zona = 1;
 			String url_recursos = "Inserte URL aqui";
 			
@@ -74,11 +76,7 @@
 				id_sendero = sendero.get_id_sendero();
 				nombre = sendero.get_nombre();
 				sede = sendero.get_sede();
-				
-				Date date = sendero.get_year();
-		        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		        year = sdf.format(date);
-		        
+				year = sendero.get_year();
 		        zona = sendero.get_id_zona();
 				url_recursos = sendero.get_url_recursos();
 				
@@ -109,17 +107,39 @@
  		
  				<div id="info" class="w3-container w3-light-blue w3-cell">
 				<!--Aqui va la info -->
-					<% if (estaciones != null && !estaciones.isEmpty()) { %>
-                        <% for (int i = 0; i < estaciones.size(); i++) { 
-                            EstacionJB estacion = estaciones.get(i); %>
-                            <div class="mySlides" style="display: none;">
-                                <h3><%= estacion.get_nombre() %></h3>
-                                <p>Latitud: <%= estacion.get_latitud() %></p>
-                                <p>Longitud: <%= estacion.get_longitud() %></p>
-                                <p>Descripción: <%= estacion.get_descripcion() %></p>
-                            </div>
-                        <% } %>
-                    <% } %>
+					<% 
+					if (estaciones != null && !estaciones.isEmpty()) {
+                        for (EstacionJB estacion : estaciones) {  
+					%>
+						<div class="mySlides" style="display: none;">
+<%-- 						    <h3><%= estacion.get_nombre() %></h3> --%>
+<%-- 						    <p>Latitud: <%= estacion.get_latitud() %></p> --%>
+<%-- 						    <p>Longitud: <%= estacion.get_longitud() %></p> --%>
+<%-- 						    <p><%= estacion.get_descripcion() %></p> --%>
+						    <%
+						    List<RecursoJB> recursos = (List<RecursoJB>) estacion.get_recursos();
+						    for (RecursoJB recurso : recursos) {
+						    	if (recurso.get_tipo_recurso().equals("Imagen")){
+						    %>
+						    	
+						    	<img src="<%= recurso.get_url() %>" style="width:100%; ">
+
+						    <% 
+						    	}
+						    	if (recurso.get_tipo_recurso().equals("Video")){
+						    %>
+						    	<video controls>
+								  <source src="<%= recurso.get_url() %>" type="video/mp4">
+								</video>
+						    <%
+						    	}
+						    }
+						    %>
+						</div>
+					<%     
+						} 
+					}
+					%>
  				</div>
  				
  				<div class="w3-light-grey w3-cell">
@@ -127,7 +147,6 @@
 					<!--Aqui va el mapa --> 
  					</div>
  					<div id="navbar" class="w3-center w3-container w3-blue" style="width:100%">
-<!-- 						  <div class=" " style="width:100%"> -->
 					    <button class="w3-button w3-left" onclick="plusDivs(-1)"> &#10094; </button>
  							<button class="w3-button w3-right" onclick="plusDivs(1)"> &#10095;</button>
  							<% 
@@ -135,13 +154,12 @@
  								if (i!=0){
  							%>
                           		<i class="fa fa-circle demo w3-button w3-hover-blue w3-hover-text-light-blue w3-blue" onclick="currentDiv(<%= i + 1 %>)"></i>  
-                       	<% 
+                       		<% 
  								}
  								else{
  							%>
  	                        	<i class="fa fa-home demo w3-button w3-hover-blue w3-hover-text-light-blue w3-blue" onclick="currentDiv(<%= i + 1 %>)"></i>  
- 	                        <% 	
- 									
+ 	                        <% 		
  								}
  							}                         	
                        	%>

@@ -3,9 +3,6 @@ package controlador;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.*;
-import java.sql.Date;
-import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
 
 import javax.servlet.*;
 
@@ -30,16 +27,7 @@ public class ServletSenderoGuardar extends HttpServlet{
 		String sede = request.getParameter("sede");
 		int id_zona = Integer.parseInt(request.getParameter("id_zona"));
 		
-		Date year = null;
-		String year_temp = request.getParameter("year");
-		LocalDate year_local = null;
-		//Conversion de la fecha al formato que se almacena en la BD
-		try {
-			year_local = LocalDate.parse(year_temp);
-		    year = Date.valueOf(year_local);
-		} catch (DateTimeParseException e) {
-			e.printStackTrace();
-		}
+		int year = Integer.parseInt(request.getParameter("year"));
 
 		String url_recursos = request.getParameter("url_recursos");
 		

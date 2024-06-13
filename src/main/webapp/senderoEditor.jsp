@@ -25,7 +25,7 @@
 			int id_sendero = 0;
 			String nombre = " ";
 			String sede = " ";
-			String year = " ";
+			int year = 2004;
 			int zona = 1;
 			String url_recursos = " ";
 			
@@ -34,11 +34,7 @@
 				id_sendero = sendero.get_id_sendero();
 				nombre = sendero.get_nombre();
 				sede = sendero.get_sede();
-				
-				Date date = sendero.get_year();
-		        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		        year = sdf.format(date);
-		        
+				year = sendero.get_year();
 		        zona = sendero.get_id_zona();
 				url_recursos = sendero.get_url_recursos();
 				
@@ -88,7 +84,7 @@
 	
 	
 				<label class="w3-text-blue" for="year">Año de creación:</label>
-	    		<input class="w3-input w3-border w3-round-large" id="year" type="date" value="<%=year%>" name="year" >
+	    		<input class="w3-input w3-border w3-round-large" id="year" type="number" value="<%=year%>" name="year" >
 	    		
 	    		<label class="w3-text-blue" for="url_recursos">Ruta de logotipo:</label>
 	   			<input class="w3-input w3-border w3-round-large" id="url_recursos" type="text"  value="<%=url_recursos%>" maxlength="255" name="url_recursos">

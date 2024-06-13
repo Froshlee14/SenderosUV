@@ -1,7 +1,6 @@
 package modelo;
 
 import java.io.Serializable;
-import java.util.Date;
 
 public class SenderoJB implements Serializable {
 	
@@ -9,7 +8,7 @@ public class SenderoJB implements Serializable {
 	private int id_sendero;
 	private String nombre;
 	private String sede;
-	private Date year;
+	private int year;
 	private int id_zona;
 	private String nombre_zona;
 	private String url_recursos;
@@ -20,7 +19,7 @@ public class SenderoJB implements Serializable {
 	}
 
 
-	public SenderoJB(int id_sendero, String nombre,String sede, Date year, int id_zona, String url_recursos) {
+	public SenderoJB(int id_sendero, String nombre,String sede, int year, int id_zona, String url_recursos) {
 		this.id_sendero = id_sendero;
 		this.nombre = nombre;
 		this.sede = sede;
@@ -29,7 +28,7 @@ public class SenderoJB implements Serializable {
 		this.url_recursos = url_recursos;
 	}
 
-	public SenderoJB(int id_sendero, String nombre, String sede, Date year, int id_zona, String nombre_zona,String url_recursos) {
+	public SenderoJB(int id_sendero, String nombre, String sede, int year, int id_zona, String nombre_zona,String url_recursos) {
 		this.id_sendero = id_sendero;
 		this.nombre = nombre;
 		this.sede = sede;
@@ -69,12 +68,12 @@ public class SenderoJB implements Serializable {
 	}
 
 
-	public Date get_year() {
+	public int get_year() {
 		return year;
 	}
 
 
-	public void set_year(Date year) {
+	public void set_year(int year) {
 		this.year = year;
 	}
 

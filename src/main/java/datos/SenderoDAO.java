@@ -40,7 +40,7 @@ public class SenderoDAO {
 			while(result.next()) {
 				String nombre = result.getString("nombre");
 				String sede = result.getString("sede");
-				Date year = result.getDate("anio_fundacion");
+				int year = result.getInt("anio_fundacion");
 				int id_zona = result.getInt("id_zona");
 				String nombre_zona = result.getString("nombre_zona");
 				String url_recursos = result.getString("url_recursos");
@@ -79,7 +79,7 @@ public class SenderoDAO {
 				System.out.println(id_sendero);
 				String nombre = result.getString("nombre");
 				String sede = result.getString("sede");
-				Date year = result.getDate("anio_fundacion");
+				int year = result.getInt("anio_fundacion");
 				int id_zona = result.getInt("id_zona");
 				String nombre_zona = result.getString("nombre_zona");
 				String url_recursos = result.getString("url_recursos");
@@ -119,7 +119,7 @@ public class SenderoDAO {
 				int id_sendero = result.getInt("id_sendero");
 				String nombre = result.getString("nombre");
 				String sede = result.getString("nombre_sede");
-				Date year = result.getDate("anio_fundacion");
+				int year = result.getInt("anio_fundacion");
 				//int id_zona = result.getInt("id_zona");
 				String nombre_zona = result.getString("nombre_zona");
 				String url_recursos = result.getString("url_recursos");
@@ -152,7 +152,7 @@ public class SenderoDAO {
 			
 			state.setString(1,sendero.get_nombre());
 			state.setString(2,sendero.get_sede());
-			state.setDate(3,(Date)sendero.get_year());
+			state.setInt(3,sendero.get_year());
 			state.setInt(4,sendero.get_id_zona());
 			state.setString(5,sendero.get_url_recursos());
 			
@@ -186,7 +186,7 @@ public class SenderoDAO {
 			
 			state.setString(1,sendero.get_nombre());
 			state.setString(2,sendero.get_sede());
-			state.setDate(3,(Date)sendero.get_year());
+			state.setInt(3,sendero.get_year());
 			state.setInt(4,sendero.get_id_zona());
 			state.setString(5,sendero.get_url_recursos());
 			state.setInt(6,sendero.get_id_sendero());
