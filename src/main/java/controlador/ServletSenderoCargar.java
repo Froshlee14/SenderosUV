@@ -41,7 +41,7 @@ private static final long serialVersionUID = 1L;
 		    request.setAttribute("sendero", sendero);
 		    
 			EstacionDAO estaciondao = new EstacionDAO();
-			estaciones = estaciondao.selectPorSendero(id_sendero);	
+			estaciones = estaciondao.selectPorSendero(id_sendero,false);	
 	  	}
 	  	
 	  	request.setAttribute("estaciones",estaciones);

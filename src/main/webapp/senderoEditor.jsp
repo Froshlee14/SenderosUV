@@ -23,11 +23,11 @@
 		
 		<%
 			int id_sendero = 0;
-			String nombre = "Sendero nombre ejemplo";
-			String sede = "Sendero sede ejemplo";
-			String year = "2024-04-11";
+			String nombre = " ";
+			String sede = " ";
+			String year = " ";
 			int zona = 1;
-			String url_recursos = "Inserte URL aqui";
+			String url_recursos = " ";
 			
 			SenderoJB sendero = (SenderoJB) request.getAttribute("sendero");
 			if (sendero != null) {
@@ -77,7 +77,7 @@
 					List<ZonaJB> zonas = (List<ZonaJB>) request.getAttribute("zonas");
 				%>
 					
-				<label class="w3-text-blue" for="fabricante">Zona:</label>
+				<label class="w3-text-blue" for="zona">Zona:</label>
 	   			<select class="w3-input w3-border w3-round-large" id="zona" name="id_zona">
 						<% for (ZonaJB z : zonas) { %>
 	        						<option value="<%= z.get_id_zona() %>" <% if (z.get_id_zona()==zona) { %> selected <% } %>>
@@ -167,7 +167,36 @@
 	
 	<script>
 	    function prepareSubmit(action) {
+	    	
+	    	//Obtengo mi formulario
 	        var form = document.getElementById('senderoForm');
+	    	
+	        // Obtiengo los valores de los campos del formulario
+	        var form_nombre = form["nombre"].value.trim();
+	        var form_sede = form["sede"].value.trim();
+	        var form_year = form["year"].value.trim();
+	        var form_url = form["url_recursos"].value.trim();
+
+	        // Reviso que los campos no esten vacios
+	        if (form_nombre == "") {
+	            alert("Escriba un nombre");
+	            return false;
+	        }
+
+	        if (form_sede == "") {
+	            alert("Escriba una sede");
+	            return false;
+	        }
+	        
+	        if (form_year == "") {
+	            alert("Escriba una fecha");
+	            return false;
+	        }
+	        
+	        if (form_url == "") {
+	            alert("Escriba una ruta");
+	            return false;
+	        }
 	        
 	        if (action === 'guardar') {
 	            form.method = 'post';

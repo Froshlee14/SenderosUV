@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import modelo.EstacionJB;
+import modelo.RecursoJB;
 
 public class EstacionDAO {
 	
@@ -57,7 +58,7 @@ public class EstacionDAO {
 		return estacion;
 	}
 
-	public List<EstacionJB> selectPorSendero(int id_sendero){
+	public List<EstacionJB> selectPorSendero(int id_sendero, boolean incluir_recursos){
         Connection conn = null;
         PreparedStatement state = null;
         ResultSet result = null;
@@ -81,7 +82,17 @@ public class EstacionDAO {
 				String latitud = result.getString("latitud");
 				String longitud = result.getString("longitud");
 				
-				estacion = new EstacionJB(id_estacion, numero, nombre, descripcion, latitud, longitud);
+				if (incluir_recursos) {
+					
+					List<RecursoJB> recursos = new ArrayList<>();
+					RecursoDAO recursodao = new RecursoDAO();
+					recursos = recursodao.selectPorEstacion(id_estacion);	
+					
+					estacion = new EstacionJB(id_estacion, numero, nombre, descripcion, latitud, longitud,recursos);
+				}
+				else {
+					estacion = new EstacionJB(id_estacion, numero, nombre, descripcion, latitud, longitud);
+				}
 				lista_estaciones.add(estacion);
 			}
 			Conexion.close(result);

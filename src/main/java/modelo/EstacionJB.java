@@ -1,6 +1,7 @@
 package modelo;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class EstacionJB implements Serializable {
 
@@ -11,6 +12,7 @@ public class EstacionJB implements Serializable {
 	private String descripcion;
 	private String latitud;
 	private String longitud;
+	private List<RecursoJB> recursos;
 	
 	public EstacionJB() {
 		//Constructor vacio
@@ -23,6 +25,16 @@ public class EstacionJB implements Serializable {
 		this.descripcion = descripcion;
 		this.latitud = latitud;
 		this.longitud = longitud;
+	}
+	
+	public EstacionJB(int id_estacion, int numero, String nombre, String descripcion, String latitud, String longitud, List<RecursoJB> recursos) {
+		this.id_estacion = id_estacion;
+		this.numero = numero;
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+		this.latitud = latitud;
+		this.longitud = longitud;
+		this.recursos = recursos;
 	}
 
 	public int get_id_estacion() {
@@ -71,6 +83,14 @@ public class EstacionJB implements Serializable {
 
 	public void set_longitud(String longitud) {
 		this.longitud = longitud;
+	}
+
+	public List<RecursoJB> get_recursos() {
+		return recursos;
+	}
+
+	public void set_recursos(List<RecursoJB> recursos) {
+		this.recursos = recursos;
 	}
 	
 	

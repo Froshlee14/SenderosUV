@@ -22,8 +22,8 @@
 			int id_sendero = (Integer) request.getAttribute("id_sendero");
 			int id_estacion = 0;
 			int numero = 0;
-			String nombre = "Nombre de estacion ejemplo";
-			String descripcion = "Esta es una descripcion breve de la estacion";
+			String nombre = " ";
+			String descripcion = " ";
 			String latitud = "";
 			String longitud = "";
 			
@@ -58,7 +58,11 @@
 			<form class="w3-container" id="estacionForm" method="post" accept-charset="UTF-8">
 
 				<input id="id_sendero" type=hidden name="id_sendero" value="<%=id_sendero%>">  
-	    		<input id="id_estacion" type=hidden name="id_estacion" value="<%=id_estacion%>">  
+	    		<input id="id_estacion" type=hidden name="id_estacion" value="<%=id_estacion%>"> 
+	    		
+	    		<label class="w3-text-blue" for="nombre">Numero de estacion:</label>
+    			<input class="w3-input w3-border" id="numero" type="number"  value="<%=numero%>" name="numero">
+	    		 
 	    		
 				<label class="w3-text-blue" for="nombre">Nombre de la estacion:</label>
     			<input class="w3-input w3-border" id="nombre" type="text"  value="<%=nombre%>" maxlength="50" name="nombre">
@@ -66,13 +70,10 @@
     			<label class="w3-text-blue" for="descripcion">Descripción:</label>
     			<input class="w3-input w3-border" id="descripcion" type="text" value="<%=descripcion%>" maxlength="200" name="descripcion" >	
 
-				<label class="w3-text-blue" for="nombre">Numero de estacion:</label>
-    			<input class="w3-input w3-border" id="numero" type="number"  value="<%=numero%>" name="numero">
-	    		
-	    		<label class="w3-text-blue" for="url_recursos">Latitud:</label>
+	    		<label class="w3-text-blue" for="latitud">Latitud:</label>
     			<input class="w3-input w3-border" id="latitud" type="text"  value="<%=latitud%>" maxlength="20" name="latitud">
     			
-	    		<label class="w3-text-blue" for="url_recursos">Longitud:</label>
+	    		<label class="w3-text-blue" for="longitud">Longitud:</label>
     			<input class="w3-input w3-border" id="longitud" type="text"  value="<%=longitud%>" maxlength="20" name="longitud">
 			
     		</form>
@@ -154,7 +155,42 @@
 
 	<script>
 	    function prepareSubmit(action) {
+	    	
+	    	//Obtengo mi formulario
 	        var form = document.getElementById('estacionForm');
+	        
+	        // Obtiengo los valores de los campos del formulario
+	       	var form_numero = form["numero"].value.trim();
+	        var form_nombre = form["nombre"].value.trim();
+	        var form_desc = form["descripcion"].value.trim();
+	        var form_latitud = form["latitud"].value.trim();
+	        var form_longitud = form["longitud"].value.trim();
+
+	        // Reviso que los campos no esten vacios
+	        if (form_numero == "") {
+	            alert("Escriba un numero");
+	            return false;
+	        }
+	        
+	        if (form_nombre == "") {
+	            alert("Escriba un nombre");
+	            return false;
+	        }
+	        
+	        if (form_desc == "") {
+	            alert("Escriba una descripcion");
+	            return false;
+	        }
+	        
+	        if (form_latitud == "") {
+	            alert("Escriba una latitud");
+	            return false;
+	        }
+	        
+	        if (form_longitud == "") {
+	            alert("Escriba una longitud");
+	            return false;
+	        }
 	        
 	        if (action === 'guardar') {
 	            form.method = 'post';

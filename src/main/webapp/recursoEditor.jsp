@@ -27,8 +27,8 @@
 		
 			int id_recurso = 0;
 			int numero = 0;
-			String url = "senderos/";
-			String creditos = "Autor de este recurso";
+			String url = " ";
+			String creditos = " ";
 			int id_tipo_recurso = 1;
 			
 			RecursoJB recurso = (RecursoJB) request.getAttribute("recurso");
@@ -98,7 +98,30 @@
 	
 	<script>
 	    function prepareSubmit(action) {
+	    	
+	    	//Obtengo mi formulario
 	        var form = document.getElementById('recursoForm');
+	        
+	        // Obtiengo los valores de los campos del formulario
+	       	var form_numero = form["numero"].value.trim();
+	        var form_url = form["url"].value.trim();
+	        var form_creditos = form["creditos"].value.trim();
+	        
+	        // Reviso que los campos no esten vacios
+	        if (form_numero == "") {
+	            alert("Escriba un numero");
+	            return false;
+	        }
+	        
+	        if (form_url == "") {
+	            alert("Escriba una ruta");
+	            return false;
+	        }
+	        
+	        if (form_creditos == "") {
+	            alert("Escriba los creditos");
+	            return false;
+	        }
 	        
 	        if (action === 'guardar') {
 	            form.method = 'post';
