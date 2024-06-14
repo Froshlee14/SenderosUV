@@ -3,11 +3,17 @@ package datos;
 import java.sql.*;
 
 public class Conexion {
-    private static String user = "postgres";
-    private static String pswd = "1234";
-    private static String bd = "SenderosUV";
-    private static String server = "jdbc:postgresql://localhost:5432/" + bd;
-    private static String driver = "org.postgresql.Driver";
+    //private static String user = "postgres";
+    //private static String pswd = "1234";
+    //private static String bd = "SenderosUV";
+    //private static String server = "jdbc:postgresql://localhost:5432/" + bd;
+    //private static String driver = "org.postgresql.Driver";
+    
+    private static String user = "root";
+    private static String pswd = "";
+    private static String bd = "senderosUV";
+    private static String server = "jdbc:mysql://localhost:3306/" + bd;
+    private static String driver = "com.mysql.cj.jdbc.Driver";
 
     public static Connection getConnection() {
 
@@ -16,9 +22,9 @@ public class Conexion {
             System.out.println("conexion establecida");
             return DriverManager.getConnection(server, user, pswd);
         } catch (SQLException ex) {
-            System.out.println("Error al intentar conectarse a la BD" + server);
-        } catch (ClassNotFoundException ex) {
-            System.out.println(ex);
+            System.out.println("Error al intentar conectarse a la BD " + server);
+        } catch (Exception ex) {
+        	ex.printStackTrace();
         }
         return null;
     }

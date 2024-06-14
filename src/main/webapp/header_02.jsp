@@ -50,8 +50,9 @@ if (usuario != null) {
       </div>
     </div>
    
-	<a class="w3-bar-item w3-text-gray" ><%=mensaje%></a>
-	<a href="ServletSenderoLista" class="w3-bar-item w3-button w3-right w3-hover-blue">Senderos</a>
+	
+	<a href="ServletSenderoLista" class="w3-bar-item w3-button w3-hover-blue">Senderos</a>
+	<a class="w3-bar-item w3-right w3-text-gray" ><%=mensaje%></a>
 </div>
 
 <jsp:useBean id="usuarios" class="modelo.UsuarioJB" scope="request" />

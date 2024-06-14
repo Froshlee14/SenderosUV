@@ -11,7 +11,7 @@ if (usuario != null) {
 %>
 
 <div class="w3-bar w3-border w3-light-grey ">
-  	<a href="index.jsp" class="w3-bar-item w3-button"> <b class="w3-text-blue">  SENDINA</b><b class="w3-text-green">UV</b> </a>
+  	<a href="index.jsp" class="w3-bar-item w3-button w3-hover-light-blue"> <b class="w3-text-blue">  SENDINA</b><b class="w3-text-green">UV</b> </a>
   
 	<div class="w3-dropdown-click w3-right">
       <button class="w3-button w3-hover-blue" onclick="myFunction()">
@@ -50,10 +50,11 @@ if (usuario != null) {
       </div>
     </div>
     
-    <a href="#" class="w3-bar-item w3-button w3-right w3-hover-blue">Ayuda</a>
-	<a href="#" class="w3-bar-item w3-button w3-right w3-hover-blue">Conocenos</a>
-	<a href="ServletSenderoLista" class="w3-bar-item w3-button w3-right w3-hover-blue">Senderos</a>
-	<a class="w3-bar-item w3-text-gray" ><%=mensaje%></a>
+   	<a href="ServletSenderoLista" class="w3-bar-item w3-button  w3-hover-blue">Senderos</a>
+	<a href="#" class="w3-bar-item w3-button  w3-hover-blue">Conocenos</a>
+    <a href="#" class="w3-bar-item w3-button  w3-hover-blue">Ayuda</a>
+
+	<a class="w3-bar-item w3-text-gray w3-right" ><%=mensaje%></a>
 </div>
 
 <jsp:useBean id="usuarios" class="modelo.UsuarioJB" scope="request" />

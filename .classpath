@@ -38,5 +38,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="E:/Files/Documents/Diseño web/postgresql-42.2.27.jre7.jar"/>
+	<classpathentry kind="lib" path="E:/Files/Documents/Proyecto Tesis/mysql-connector-j-8.4.0.jar"/>
+	<classpathentry kind="lib" path="E:/Files/Documents/Proyecto Tesis/postgresql-42.2.27.jre7.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

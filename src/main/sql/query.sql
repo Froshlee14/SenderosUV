@@ -82,42 +82,6 @@ CREATE TABLE usuario(
 	FOREIGN KEY (id_rol_usuario) REFERENCES rol_usuario(id_rol_usuario)
 );
 
-INSERT INTO sendero (nombre,sede,anio_fundacion,id_zona,url_recursos)
-VALUES
-	('Sendero Interpretativo del Agua','Unidad de Ciencias de la Salud',2023,1,'sendero_agua_xalapa/logo.png'),
-	('Tehuan Ti Ameh','Grandes Montañas',2022,3,'sendero_agua_xalapa/logo.png');
-	
-INSERT INTO zona_sendero (id_zona,id_sendero)
-VALUES
-	(1,1),
-	(3,2);
-
-INSERT INTO rol_usuario (rol_usuario) 
-VALUES 
-    ('Administrador'),
-    ('Editor');
-
-INSERT INTO usuario (nombre, contrasena, id_rol_usuario) 
-VALUES 
-    ('Admin', '123', 1),
-    ('Eddy', '123', 2),
-    ('Eddy2', '123', 2);
-
-INSERT INTO zona (nombre) 
-VALUES 
-    ('Xalapa'),
-    ('Veracruz'),
-    ('Orizaba-Córdoba'),
-    ('Poza Rica-Tuxpan'),
-    ('Coatzacoalcos-Minatitlán');
-	
-INSERT INTO tipo_recurso (tipo) 
-VALUES
-	('Imagen'),
-	('Video'),
-	('PDF'),
-	('Musica');
-
 /*
 
 DROP TABLE usuario;
