@@ -40,7 +40,7 @@
 			
 		</div>
 		
-		<div class="w3-row-padding">
+		<div class="w3-row-padding w3-center">
 		
 
 
@@ -55,7 +55,7 @@
 				
 		%>
 		
-		<div class="w3-quarter w3-section ">
+		<div class="w3-quarter w3-section  ">
 		
 			<div class=" w3-white w3-round-large w3-border w3-display-container">
 
@@ -74,8 +74,8 @@
 				%>	
 					
 				
-				<div class="w3-light-gray">
-					<img src="<%= logo_url %>" style="width:100%; aspect-ratio: 1 / 1;">
+				<div class="w3-light-gray w3-round-large">
+					<img src="<%= logo_url %>" style="width:100%; aspect-ratio: 1 / 1;" class="w3-round-large">
 				</div>
 				<div class="w3-light-gray w3-container w3-round-large w3-center">
 					

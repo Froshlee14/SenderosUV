@@ -10,7 +10,7 @@ public class Conexion {
     //private static String driver = "org.postgresql.Driver";
     
     private static String user = "root";
-    private static String pswd = "";
+    private static String pswd = "1234";
     private static String bd = "senderosUV";
     private static String server = "jdbc:mysql://localhost:3306/" + bd;
     private static String driver = "com.mysql.cj.jdbc.Driver";

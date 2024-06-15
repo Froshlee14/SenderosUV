@@ -194,7 +194,8 @@
               EstacionJB estacion = estaciones.get(i); %>
               {
                   nombre: "<%= estacion.get_nombre() %>",
-                  numero: <%= estacion.get_numero() %>,        
+                  numero: <%= estacion.get_numero() %>,
+                  descripcion: "<%= estacion.get_descripcion() %>",
                   latitud: <%= estacion.get_latitud() %>,
                   longitud: <%= estacion.get_longitud() %>
               }<%= (i < estaciones.size() - 1) ? "," : "" %>
@@ -217,7 +218,7 @@
     // Request needed libraries.
     //@ts-ignore
     const { Map } = await google.maps.importLibrary("maps");
-    const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+    const { AdvancedMarkerElement, PinElement  } = await google.maps.importLibrary("marker");
 
     // Configuracion del mapa
     const zoom = 20
@@ -233,22 +234,77 @@
       //disableDefaultUI: true,
       streetViewControl: false,
       mapTypeControl: true,
+      mapTypeId: 'terrain',
       zoomControl: true,
 
     });
+    
+    const pathCoordinates = [];
 
     estaciones.forEach(estacion => {
     	
     	//const priceTag = document.createElement("div");
     	//priceTag.className = "price-tag";
-    	//priceTag.textContent = "#"+estacion.numero;
-        new AdvancedMarkerElement({
+    	//priceTag.textContent = estacion.numero;
+    	
+    	
+		const contentString = `
+        <div id="content">
+            <h2>${estacion.nombre}</h2>
+            <p> ${estacion.descripcion}</p>
+        </div>`;
+          
+        const infoWindow = new google.maps.InfoWindow({
+          content: contentString,
+          ariaLabel: estacion.nombre,
+        });
+        
+        const pin = new PinElement({
+            glyph: `${estacion.numero}`,
+            glyphColor: 'black',
+            scale: 1.5,
+            background: '#FFD700',
+            borderColor: '#FF7F50',
+            
+          });
+    	
+    	
+        const marker = new AdvancedMarkerElement({
             map: map,
             position: { lat: estacion.latitud, lng: estacion.longitud },
             title: estacion.nombre,
+            content: pin.element,
             //content:priceTag,
         });
+        
+        marker.addListener('click', () => {
+            infoWindow.open({anchor: marker});
+          });
+        
+     	//Agregamos el punto al path para dibujar el sendero
+        pathCoordinates.push({ lat: estacion.latitud, lng: estacion.longitud });
     });
+    
+    //A dibujar
+    const lineSymbol = {
+	  path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
+	  scale: 3,
+	  strokeColor: '#002D62'
+	};
+    
+    const trailPath = new google.maps.Polyline({
+        path: pathCoordinates,
+        icons: [{
+            icon: lineSymbol,
+            offset: '100%',
+            repeat: '50px' // Repeat the arrow every 50 pixels
+          }],
+        geodesic: true,
+        strokeColor: '#7CB9E8',
+        strokeOpacity: 0.4,
+        strokeWeight: 15,
+    });
+    trailPath.setMap(map);
     
 	//Variable para el control del slide
 	slideIndex = 1;

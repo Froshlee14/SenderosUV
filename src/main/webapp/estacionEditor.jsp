@@ -142,7 +142,7 @@
 				}
 			}
 			else {
-				out.print("Este sendero no tiene estaciones");
+				out.print("Esta estacion no tiene recursos");
 			}
 
     	}
