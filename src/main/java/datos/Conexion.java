@@ -16,11 +16,20 @@ public class Conexion {
     private static String driver = "com.mysql.cj.jdbc.Driver";
 
     public static Connection getConnection() {
+    	
+    	String server_url = System.getProperty("JDBC_SERVER_URL");
+    	if (server == null) server_url = server;
+    	
+    	String server_username = System.getProperty("JDBC_USERNAME");
+    	if (server_username == null) server_username = user;
+    	
+    	String server_password = System.getProperty("JDBC_PASSWORD");
+    	if (server == null) server_password = pswd;
 
         try {
             Class.forName(driver);
             System.out.println("conexion establecida");
-            return DriverManager.getConnection(server, user, pswd);
+            return DriverManager.getConnection(server_url, server_username, server_password);
         } catch (SQLException ex) {
             System.out.println("Error al intentar conectarse a la BD " + server);
         } catch (Exception ex) {
