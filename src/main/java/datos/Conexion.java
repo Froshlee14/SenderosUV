@@ -3,33 +3,44 @@ package datos;
 import java.sql.*;
 
 public class Conexion {
-    //private static String user = "postgres";
-    //private static String pswd = "1234";
-    //private static String bd = "SenderosUV";
-    //private static String server = "jdbc:postgresql://localhost:5432/" + bd;
-    //private static String driver = "org.postgresql.Driver";
-    
-    private static String user = "root";
+    private static String user = "postgres";
     private static String pswd = "1234";
-    private static String bd = "senderosUV";
-    private static String server = "jdbc:mysql://localhost:3306/" + bd;
-    private static String driver = "com.mysql.cj.jdbc.Driver";
+    private static String bd = "SenderosUV";
+    private static String server = "jdbc:postgresql://localhost:5432/" + bd;
+    private static String driver = "org.postgresql.Driver";
+    
+    //private static String user = "root";
+    //private static String pswd = "1234";
+    //private static String bd = "senderosUV";
+    //private static String server = "jdbc:mysql://localhost:3306/" + bd;
+    //private static String driver = "com.mysql.cj.jdbc.Driver";
 
     public static Connection getConnection() {
     	
     	String server_url = System.getProperty("JDBC_SERVER_URL");
-    	if (server == null) server_url = server;
+    	if (server_url == null) { 
+    		server_url = server;
+    	}
+    	System.out.println(server_url);
     	
     	String server_username = System.getProperty("JDBC_USERNAME");
-    	if (server_username == null) server_username = user;
+    	if (server_username == null) {
+    		server_username = user;
+    	}
+    	System.out.println(server_username);
     	
     	String server_password = System.getProperty("JDBC_PASSWORD");
-    	if (server == null) server_password = pswd;
+    	if (server_password == null) {
+    		server_password = pswd;
+    	}
+    	System.out.println(server_password);
 
         try {
             Class.forName(driver);
             System.out.println("conexion establecida");
             return DriverManager.getConnection(server_url, server_username, server_password);
+            //return DriverManager.getConnection(server, user, pswd);
+            
         } catch (SQLException ex) {
             System.out.println("Error al intentar conectarse a la BD " + server);
         } catch (Exception ex) {

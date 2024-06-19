@@ -1,3 +1,15 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<style>
+body, h1, h2, h3, h4, h5, h6  {
+  font-family: Roboto, sans-serif;
+}
+</style>
+
 <%
 UsuarioJB usuario = (UsuarioJB) session.getAttribute("usuario");
 String mensaje = "";
@@ -10,69 +22,43 @@ if (usuario != null) {
 
 %>
 
-<div class="w3-bar w3-border w3-light-grey ">
-  	<a href="index.jsp" class="w3-bar-item w3-button"> <b class="w3-text-blue">SENDINA</b><b class="w3-text-green">UV</b> </a>
+<nav class="navbar navbar-expand-sm bg-light navbar-light  ">
 
-	<div class="w3-dropdown-click w3-right w3-hover-blue">
-      <button class="w3-button" onclick="myFunction()">
-        &#9776;
-      </button>
-      <div id="demo" class="w3-dropdown-content w3-bar-block w3-card" style="display:none;right:0">
-     	 <%
-		if (usuario == null) {
-		%>
-		
-		<form action="login.jsp">
-        	<button type="submit" class="w3-bar-item w3-button w3-hover-blue">Iniciar sesion</button>
-        </form> 
-		
-		<%  
-		} else {
-		%>
-		
-		<form action="ServletLogout" method="get">
-        	<button type="submit" class="w3-bar-item w3-button w3-hover-blue">Cerrar sesion</button>
-        </form> 
-        
-        <% 
-			if (usuario.get_rol_usuario().equals("Administrador")){
-		%>
-        
-        <form action="ServletUsuarioLista" method="get">
-        	<button type="submit" class="w3-bar-item w3-button w3-hover-blue">Gestionar usuarios</button>
-        </form>
-		
-		<% 
-			}
-		}
-		
-		%>
-      </div>
-    </div>
-   
+	<ul class="navbar-nav mr-auto">
 	
-	<a href="ServletSenderoLista" class="w3-bar-item w3-button w3-hover-blue">Senderos</a>
-	<a class="w3-bar-item w3-right w3-text-gray" ><%=mensaje%></a>
-</div>
+		<li class="nav-item mr-3">
+	      <a class="nav-link text-dark " href="index.jsp" type="button"> Inicio </a>
+	    </li>
+	    
+	    <li class="nav-item mr-3">
+	      <a class="nav-link text-dark" href="ServletSenderoLista" > Senderos </a>
+	    </li>
+	</ul>
+    
+    <ul class="navbar-nav ml-auto">
+    
+	    <span class="navbar-text">
+	    	<%=mensaje%>
+		</span>
+	    
+	    <li class="nav-item dropdown">
+	      <a class="nav-link text-dark" href="#" id="navbardrop" data-toggle="dropdown">
+	         &#9776;
+	      </a>
+	      <div class="dropdown-menu dropdown-menu-right">
+	      	<% if (usuario == null) { %>
+	        <a class="dropdown-item" href="login.jsp">Iniciar Sesion</a>
+	        <% } else {%>
+	        <a class="dropdown-item" href="ServletLogout">Cerrar sesion</a>
+	        <% if (usuario.get_rol_usuario().equals("Administrador")){ %>
+	        <a class="dropdown-item" href="ServletUsuarioLista">Gestionar usuarios</a>
+	        <% }} %>
+	      </div>
+	    </li>
+	
+	</ul>
+
+</nav>
 
 <jsp:useBean id="usuarios" class="modelo.UsuarioJB" scope="request" />
 
-<script>
-	function myFunction() {
-	  var x = document.getElementById("demo");
-	  if (x.className.indexOf("w3-show") == -1) {
-	    x.className += " w3-show";
-	  } else { 
-	    x.className = x.className.replace(" w3-show", "");
-	  }
-	}
-</script>
-
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
-<style>
-body, h1, h2, h3, h4, h5, h6  {
-  font-family: Roboto, sans-serif;
-}
-</style>

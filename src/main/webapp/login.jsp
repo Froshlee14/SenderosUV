@@ -7,42 +7,47 @@
 		<title>SendinaUV</title>
 	</head>
 
-	<body class="w3-theme-l4">
+	<body class="bg-light text-center">
 	
 		<%@ include file="header_03.jsp" %>
-	
-		<div>
-		
-		
-			<div class="w3-panel w3-white w3-display-middle w3-card" style="width:300px">
 			
-				<form action="ServletLogin" method="post" >
+		<div class="card pt-3 mx-auto align-self-center " style="width:300px">
+			<form action="ServletLogin" method="post" class="form-signin">
+			
+
+			<img class="rounded " src="icon.ico" alt="" width="72" height="72">
+
+			
+			<div class="card-body ">
+			
 				
-					<p> </p>
-					<label class="w3-text-blue" for="usuario">Usuario:</label> 
-					<input class="w3-input w3-border" id="usuario" type="text" name="inputUsuario">
+				<div class="form-group">
+<!-- 					<label for="usuario">Usuario:</label>  -->
+					<input class="form-control" id="usuario" type="text" name="inputUsuario" placeholder="Nombre">
+				</div>
 
-					<label class="w3-text-blue" for="password">Contraseña:</label> 
-					<input class="w3-input w3-border" id="password" type="password" name="inputPassword">
+				<div class="form-group">
+<!-- 					<label class="w3-text-blue" for="password">Contraseña:</label>  -->
+					<input class="form-control" id="password" type="password" name="inputPassword" placeholder="Contraseña">
+				</div>
 
-					<p> </p>
-					<input type="submit" name="loginBoton" value="Iniciar Sesion" class="w3-button w3-hover-light-grey w3-blue">
-					<p> </p>
-							
-				</form>
-	
-				<%
-				String mensaje = (String) request.getAttribute("mensaje_login");
-				if (mensaje != null && !mensaje.isEmpty()) {
-				%>
-				<p><%=mensaje%></p>
-				<%
-				}
-				%>
+				<div class=" text-center">
+					<input type="submit" name="loginBoton" value="Iniciar Sesion" class="btn btn-primary btn-block">
+				</div>
 			</div>
-
+			
+			</form>
 		</div>
+			
+		<%
+		String mensaje = (String) request.getAttribute("mensaje_login");
+		if (mensaje != null && !mensaje.isEmpty()) {
+		%>
+		<p><%=mensaje%></p>
+		<%
+		}
+		%>
 
-</body>
+	</body>
 
 </html>

@@ -4,4 +4,14 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+  
+<!--     <servlet> -->
+<!--         <servlet-name>ServletSenderoLista</servlet-name> -->
+<!--         <servlet-class>controlador.ServletSenderoLista</servlet-class> -->
+<!--     </servlet> -->
+<!--     <servlet-mapping> -->
+<!--         <servlet-name>ServletSenderoLista</servlet-name> -->
+<!--         <url-pattern>/ServletSenderoLista</url-pattern> -->
+<!--     </servlet-mapping> -->
+  
 </web-app>

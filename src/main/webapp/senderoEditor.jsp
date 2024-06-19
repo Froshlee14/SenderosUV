@@ -11,86 +11,96 @@
 <html>
 
 
-	<head>
-		<title>SendinaUV</title>
-	</head>
+<head>
+	<title>SendinaUV</title>
+</head>
+
+
+<body class="bg-light" >
+
+	<%@ include file="header_02.jsp" %>
 	
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-	<body  class="w3-theme-l4">
-
-		<%@ include file="header_02.jsp" %>
+	<%
+		int id_sendero = 0;
+		String nombre = "";
+		String sede = "";
+		int year = 2004;
+		int zona = 1;
+		String url_recursos = "";
 		
-		<%
-			int id_sendero = 0;
-			String nombre = " ";
-			String sede = " ";
-			int year = 2004;
-			int zona = 1;
-			String url_recursos = " ";
-			
-			SenderoJB sendero = (SenderoJB) request.getAttribute("sendero");
-			if (sendero != null) {
-				id_sendero = sendero.get_id_sendero();
-				nombre = sendero.get_nombre();
-				sede = sendero.get_sede();
-				year = sendero.get_year();
-		        zona = sendero.get_id_zona();
-				url_recursos = sendero.get_url_recursos();
-				
-			}
+		SenderoJB sendero = (SenderoJB) request.getAttribute("sendero");
+		if (sendero != null) {
+			id_sendero = sendero.get_id_sendero();
+			nombre = sendero.get_nombre();
+			sede = sendero.get_sede();
+			year = sendero.get_year();
+	        zona = sendero.get_id_zona();
+			url_recursos = sendero.get_url_recursos();
+		}
+	%>
 		
-		%>
+	<div class="container " style="margin-top:30px">
+		<div class=" center mx-auto">
 		
-		<div class="w3-container w3-content">
+		<nav class="navbar navbar-expand-sm">
+			<span class="navbar-text mr-auto">
+	    		Información de sendero
+			</span>
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item mr-3">
+			      <a href="#" class="btn btn-primary" onclick="prepareSubmit('guardar')"> <%= (sendero != null) ? "Actualizar" : "Guardar" %> </a>
+			    </li>
+				<% if (sendero != null) { %>
+				<li class="nav-item mr-3">
+		  			<a href="#" class="btn btn-danger" onclick="prepareSubmit('borrar')">Eliminar</a>
+		  		</li>
+		  		<% } %>
+			</ul>
+		</nav>
 
-		<p> </p>
-		<div class="w3-bar">
-		  
-		  <a href="#" class="w3-bar-item w3-button"> <b> Información del sendero </b> </a>
-		  <% if (sendero != null) { %>
-		  	<a href="#" class="w3-bar-item w3-button w3-hover-red w3-right" onclick="prepareSubmit('borrar')">Eliminar</a>
-		  <% } %>
-		  <a href="#" class="w3-bar-item w3-button w3-hover-blue w3-right" onclick="prepareSubmit('guardar')"><%= (sendero != null) ? "Actualizar" : "Guardar" %></a>
-		</div>
-		
-
- 		<div class="w3-panel w3-white w3-card w3-display-container">
+ 		<div class="card p-3 container">
  		
- 			<p></p>
-			<form class="w3-container" method="post" accept-charset="UTF-8" id="senderoForm">
+			<form method="post" accept-charset="UTF-8" id="senderoForm">
 	
 	    		<input id="id_sendero" type=hidden name="id_sendero" value="<%=id_sendero%>">    		
 	
-				<label class="w3-text-blue" for="nombre">Nombre de sendero:</label>
-	   			<input class="w3-input w3-border w3-round-large" id="nombre" type="text"  value="<%=nombre%>" maxlength="50" name="nombre">
+				<div class="form-group">
+					<label for="nombre">Nombre de sendero:</label>
+		   			<input class="form-control" id="nombre" type="text"  value="<%=nombre%>" maxlength="50" name="nombre" placeholder="Nombre de sendero">
+	   			</div>
 	   			
-	   			<label class="w3-text-blue" for="sede">Sede del sendero:</label>
-	   			<input class="w3-input w3-border w3-round-large" id="sede" type="text" value="<%=sede%>" maxlength="50" name="sede" >
+	   			<div class="form-group">
+	   				<label for="sede">Sede del sendero:</label>
+	   				<input class="form-control" id="sede" type="text" value="<%=sede%>" maxlength="50" name="sede" placeholder="Sede del sendero">
+				</div>
 				
-					<%
-					@SuppressWarnings("unchecked")
-					List<ZonaJB> zonas = (List<ZonaJB>) request.getAttribute("zonas");
+				<%
+				@SuppressWarnings("unchecked")
+				List<ZonaJB> zonas = (List<ZonaJB>) request.getAttribute("zonas");
 				%>
 					
-				<label class="w3-text-blue" for="zona">Zona:</label>
-	   			<select class="w3-input w3-border w3-round-large" id="zona" name="id_zona">
+				<div class="form-group">
+					<label for="zona">Zona:</label>
+		   			<select class="form-control" id="zona" name="id_zona" >
 						<% for (ZonaJB z : zonas) { %>
-	        						<option value="<%= z.get_id_zona() %>" <% if (z.get_id_zona()==zona) { %> selected <% } %>>
-	            						<%= z.get_nombre() %>
-	        						</option>
-	    						<% } %>
-				</select>  		
+       						<option value="<%= z.get_id_zona() %>" <% if (z.get_id_zona()==zona) { %> selected <% } %>>
+           						<%= z.get_nombre() %>
+       						</option>
+   						<% } %>
+					</select> 
+				</div> 		
 	
-	
-				<label class="w3-text-blue" for="year">Año de creación:</label>
-	    		<input class="w3-input w3-border w3-round-large" id="year" type="number" value="<%=year%>" name="year" >
+				<div class="form-group">
+					<label for="year">Año de creación:</label>
+		    		<input class="form-control" id="year" type="number" value="<%=year%>" name="year" >
+	    		</div>
 	    		
-	    		<label class="w3-text-blue" for="url_recursos">Ruta de logotipo:</label>
-	   			<input class="w3-input w3-border w3-round-large" id="url_recursos" type="text"  value="<%=url_recursos%>" maxlength="255" name="url_recursos">
-
+	    		<div class="form-group">
+		    		<label for="url_recursos">Ruta de logotipo:</label>
+		   			<input class="form-control" id="url_recursos" type="text"  value="<%=url_recursos%>" maxlength="255" name="url_recursos">
+				</div>
+				
 	    	</form>
-    		<p> </p>
     	</div>
 		
     		
@@ -101,17 +111,20 @@
 			
 		%>
 		
-		<div class="w3-bar">
-		  
-			<a href="#" class="w3-bar-item w3-button"> <b> Estaciones </b> </a>
-		  
-			<form action="ServletEstacionCargar" method="get" accept-charset="UTF-8">
-				<input id="id_estacion" type=hidden name="id_estacion" value="0">
-				<input id="id_sendero" type=hidden name="id_sendero" value="<%=id_sendero%>">
-				<input type="submit" value="Agregar Estacion" class="w3-bar-item w3-button w3-hover-green w3-right">
-			</form>
-		  
-		</div>
+		<nav class="navbar navbar-expand-sm">
+			<span class="navbar-text mr-auto">
+	    		Estaciones del sendero
+			</span>
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item mr-3">
+		  			<form action="ServletEstacionCargar" method="get" accept-charset="UTF-8">
+						<input id="id_estacion" type=hidden name="id_estacion" value="0">
+						<input id="id_sendero" type=hidden name="id_sendero" value="<%=id_sendero%>">
+						<input type="submit" value="Agregar Estacion" class="btn btn-info">
+					</form>
+		  		</li>
+			</ul>
+		</nav>
 		
 		<%
 			
@@ -159,6 +172,7 @@
 		%>
 		
 		</div>
+	</div>
 	
 	
 	<script>
