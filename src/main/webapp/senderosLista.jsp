@@ -7,7 +7,8 @@
 <html>
 
 <head>
-<title>SendinaUV</title>
+	<title>SendinaUV</title>
+	<link rel="stylesheet" type="text/css" href="custom.css" />
 </head>
 
 <body>
@@ -18,7 +19,7 @@
 
 	<%@ include file="header_01.jsp"%>
 	
-	<div class="container" style="margin-top:30px">
+	<div class="container" style="margin-top:30px; margin-bottom:30px">
 	
 		<nav class="navbar navbar-expand-sm navbar-light ">
 			<ul class="navbar-nav mr-auto">
@@ -59,37 +60,26 @@
 	
 			<div class="col-sm-4">
 	
-				<div class="card rounded">
+				<div class="card rounded clearfix ">
 	
-	
-					<% 
-					if (usuario != null) { 
-					%>
-					
-					<div class=" mr-auto">
-	
-						<form action="ServletSenderoCargar" method="get" accept-charset="UTF-8">
-							<input id="id_sendero" type=hidden name="id_sendero" value="<%=sendero.get_id_sendero()%>"> 
-							<input type="submit" value="Editar" class="btn btn-secondary">
-						</form>
-					</div>
-	
-					<% 
-					} 
-					%>
-	
-	
-					<img class="card-img-top" src="<%=logo_url%>" style="width: 100%; aspect-ratio: 1/1;">
+					<img  src="<%=logo_url%>" style="width: 100%; aspect-ratio: 1/1;">
 					
 					<div class="card-body bg-light text-center">
 	
 						<h5 class="text-primary"> <% out.print(sendero.get_nombre()); %> </h5>
 						<p class="text-secondary"> <% out.print(sendero.get_sede()); %> </p>
 	
-						<form action="ServletSenderoVer" method="get" accept-charset="UTF-8">
-							<input id="id_sendero" type=hidden name="id_sendero" value="<%=sendero.get_id_sendero()%>">
-							<input type="submit" value="Ver sendero" class="btn btn-primary">
-						</form>
+<!-- 						<form action="ServletSenderoVer" method="get" accept-charset="UTF-8"> -->
+<%-- 							<input id="id_sendero" type=hidden name="id_sendero" value="<%=sendero.get_id_sendero()%>"> --%>
+<!-- 							<input type="submit" value="Ver sendero" class="btn btn-primary"> -->
+<!-- 						</form> -->
+						
+						<a href="ServletSenderoVer?id_sendero=<%=sendero.get_id_sendero()%>" class="btn btn-primary card-link">Ver sendero</a>
+    					
+    					<% if (usuario != null) { %>
+    						<a href="ServletSenderoCargar?id_sendero=<%=sendero.get_id_sendero()%>" class="btn btn-secondary card-link">Editar</a>
+						<% } %>
+						
 					</div>
 	
 				</div>

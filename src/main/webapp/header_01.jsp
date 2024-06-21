@@ -1,12 +1,14 @@
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
 <style>
 body, h1, h2, h3, h4, h5, h6  {
-  font-family: Roboto, sans-serif;
+  font-family: "Varela Round", sans-serif;
 }
 </style>
 
@@ -22,35 +24,26 @@ if (usuario != null) {
 
 %>
 
-<nav class="navbar navbar-expand-sm bg-light navbar-light sticky-top">
+<nav class="navbar navbar-expand-sm navbar-light sticky-top border">
 
-	<ul class="navbar-nav mr-auto">
-	
-		<li class="nav-item mr-3">
-	      <a class="nav-link text-dark " href="index.jsp" type="button"> Inicio </a>
-	    </li>
-	    
-	    <li class="nav-item mr-3">
-	      <a class="nav-link text-dark" href="ServletSenderoLista" > Senderos </a>
-	    </li>
-	
-	    <li class="nav-item mr-3">
-	      <a class="nav-link text-dark" href="#" > Conocenos </a>
-	    </li>
-	    
-	        <li class="nav-item mr-3">
-	      <a class="nav-link text-dark" href="#" > Ayuda </a>
-	    </li>
+	<div class="navbar-nav mr-auto">
+
+		<a class="nav-item nav-link text-dark mr-3" href="index.jsp" type="button"> Inicio </a>
+		<a class="nav-item nav-link text-dark mr-3" href="ServletSenderoLista" > Senderos </a>
+		<a class="nav-item nav-link text-dark mr-3" href="#" type="button"> Conocenos </a>
+		<a class="nav-item nav-link text-dark mr-3" href="#" type="button"> Ayuda </a>
 	        
-	</ul>
+	</div>
     
-	<span class="navbar-text ml-auto">
+
+    
+    <div class="navbar-nav ml-auto">
+    
+    	<span class="navbar-text">
 	    	<%=mensaje%>
-	</span>
-    
-    <ul class="navbar-nav ml-auto">
+		</span>
 	    
-	    <li class="nav-item dropdown">
+	    <div class="nav-item dropdown">
 	      <a class="nav-link text-dark" href="#" id="navbardrop" data-toggle="dropdown">
 	         &#9776;
 	      </a>
@@ -63,9 +56,9 @@ if (usuario != null) {
 	        <a class="dropdown-item" href="ServletUsuarioLista">Gestionar usuarios</a>
 	        <% }} %>
 	      </div>
-	    </li>
+	    </div>
 	
-	</ul>
+	</div>
 
 </nav>
 

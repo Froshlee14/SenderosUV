@@ -6,18 +6,19 @@
 <html>
 
 
-	<head>
-		<title>SendinaUV</title>
+<head>
+	<title>SendinaUV</title>
 <!-- 		<link rel="icon" href="icon.ico"> -->
-	</head>
+	<link rel="stylesheet" type="text/css" href="custom.css" />
+</head>
 	
 	
 
-	<body>
+<body>
 	
 
 		
-	<div class="jumbotron text-center" style="margin-bottom:0; background: linear-gradient(315deg, #0499f2 0%, #26f596 74%);">
+	<div class="jumbotron bg-sendinuv text-center" style="margin-bottom:0;">
 		<img src="logo.png" width="320">
 	</div>
 		
@@ -40,5 +41,5 @@
 		</div>
 	</div>
 	
-	</body>
+</body>
 </html>

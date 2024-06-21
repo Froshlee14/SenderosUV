@@ -10,7 +10,7 @@ body, h1, h2, h3, h4, h5, h6  {
 }
 </style>
 
-<nav class="navbar navbar-expand-sm bg-light navbar-light  ">
+<nav class="navbar navbar-expand-sm navbar-light border">
 
 	<ul class="navbar-nav mr-auto">
 	

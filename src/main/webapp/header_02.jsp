@@ -22,7 +22,7 @@ if (usuario != null) {
 
 %>
 
-<nav class="navbar navbar-expand-sm bg-light navbar-light  ">
+<nav class="navbar navbar-expand-sm navbar-light border ">
 
 	<ul class="navbar-nav mr-auto">
 	
