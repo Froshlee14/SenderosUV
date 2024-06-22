@@ -11,117 +11,110 @@
 <html>
 
 
-	<head>
-		<title>SendinaUV</title>
-	</head>
+<head>
+	<title>SendinaUV</title>
+	<link rel="stylesheet" type="text/css" href="custom.css" />
+</head>
 	
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<body>
 
-	<body  class="w3-theme-l4">
-
-		<%@ include file="header_02.jsp" %>
+	<%@ include file="header_02.jsp" %>
+	
+	<%
+		int id_estacion = (Integer) request.getAttribute("id_estacion");
+		int id_sendero = (Integer) request.getAttribute("id_sendero");
+	
+		int id_recurso = 0;
+		int numero = 0;
+		String url = "";
+		String creditos = "";
+		int id_tipo_recurso = 1;
 		
-		<%
-			int id_estacion = (Integer) request.getAttribute("id_estacion");
-			int id_sendero = (Integer) request.getAttribute("id_sendero");
-		
-			int id_recurso = 0;
-			int numero = 0;
-			String url = " ";
-			String creditos = " ";
-			int id_tipo_recurso = 1;
+		RecursoJB recurso = (RecursoJB) request.getAttribute("recurso");
+		if (recurso != null) {
+			id_recurso = recurso.get_id_recurso();
+			numero = recurso.get_numero();
+			url = recurso.get_url();		  
+	        creditos = recurso.get_creditos();
+			id_tipo_recurso = recurso.get_id_tipo_recurso();
+		}
+	
+	%>
+	
+	<div class="container" style="margin-top:30px">
+	
+		<div class="card mb-4">
+	
+			<form class="needs-validation" method="post" accept-charset="UTF-8" id="recursoForm">
 			
-			RecursoJB recurso = (RecursoJB) request.getAttribute("recurso");
-			if (recurso != null) {
-				id_recurso = recurso.get_id_recurso();
-				numero = recurso.get_numero();
-				url = recurso.get_url();		  
-		        creditos = recurso.get_creditos();
-				id_tipo_recurso = recurso.get_id_tipo_recurso();
-				
-			}
-		
-		%>
-		
-		<div class="w3-container w3-content">
-
-		<p> </p>
-		<div class="w3-bar">
-		  
-		  <a href="#" class="w3-bar-item w3-button"> <b> Información del recurso </b> </a>
-		  <% if (recurso != null) { %>
-		  	<a href="#" class="w3-bar-item w3-button w3-hover-red w3-right" onclick="prepareSubmit('borrar')">Eliminar</a>
-		  <% } %>
-		  <a href="#" class="w3-bar-item w3-button w3-hover-blue w3-right" onclick="prepareSubmit('guardar')"><%= (recurso != null) ? "Actualizar" : "Guardar" %></a>
-		</div>
-		
-
- 		<div class="w3-panel w3-white w3-card w3-display-container">
- 		
- 			<p></p>
-			<form class="w3-container" method="post" accept-charset="UTF-8" id="recursoForm">
+				<div class="card-header navbar navbar-expand-sm p-4">
+					<span class="navbar-text mr-auto">
+			    		<b>Información de recurso </b>
+					</span>
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item mr-3">
+							<input type="submit" value="<%= (recurso != null) ? "Actualizar" : "Guardar" %>" class="btn btn-primary" onclick="prepareSubmit('guardar')">
+					    </li>
+						<% if (recurso != null) { %>
+						<li class="nav-item">
+							<input type="submit" value="Eliminar" class="btn btn-danger" onclick="prepareSubmit('borrar')">
+				  		</li>
+				  		<% } %>
+					</ul>
+				</div>
+			
 	
-	    		<input id="id_recurso" type=hidden name="id_recurso" value="<%=id_recurso%>"> 
-	    		<input id="id_estacion" type=hidden name="id_estacion" value="<%=id_estacion%>"> 
-	    		<input id="id_senero" type=hidden name="id_sendero" value="<%=id_sendero%>">    		
-	
-				<label class="w3-text-blue" for="nombre">Numero de recurso:</label>
-	   			<input class="w3-input w3-border w3-round-large" id="numero" type="number" value="<%=numero%>" name="numero">
-	   			
-	   			<label class="w3-text-blue" for="sede">URL o ruta del recurso:</label>
-	   			<input class="w3-input w3-border w3-round-large" id="url" type="text" value="<%=url%>" maxlength="100" name="url" >
-				
-					<%
-					@SuppressWarnings("unchecked")
-					List<TipoRecursoJB> tipo_recursos = (List<TipoRecursoJB>) request.getAttribute("tipo_recursos");
-				%>
+	 			<div class="card-body">
+		
+		    		<input id="id_recurso" type=hidden name="id_recurso" value="<%=id_recurso%>"> 
+		    		<input id="id_estacion" type=hidden name="id_estacion" value="<%=id_estacion%>"> 
+		    		<input id="id_senero" type=hidden name="id_sendero" value="<%=id_sendero%>">    		
 					
-				<label class="w3-text-blue" for="fabricante">Tipo de recurso:</label>
-	   			<select class="w3-input w3-border w3-round-large" id="id_tipo_recurso" name="id_tipo_recurso">
-						<% for (TipoRecursoJB tr : tipo_recursos) { %>
-	        						<option value="<%= tr.get_id_tipo_recurso() %>" <% if (tr.get_id_tipo_recurso()==id_tipo_recurso) { %> selected <% } %>>
-	            						<%= tr.get_tipo() %>
-	        						</option>
-	    						<% } %>
-				</select> 
-				
-				<label class="w3-text-blue" for="sede">Créditos:</label>
-	   			<input class="w3-input w3-border w3-round-large" id="creditos" type="text" value="<%=creditos%>" maxlength="100" name="creditos" >
-				 		
-	
+					<div class="row">
+						<div class="form-group col">
+							<label for="nombre">Numero de recurso:</label>
+			   				<input required class="form-control" id="numero" type="number" value="<%=numero%>" name="numero">
+			   			</div>
+			   			
+			   			
+						<%
+						@SuppressWarnings("unchecked")
+						List<TipoRecursoJB> tipo_recursos = (List<TipoRecursoJB>) request.getAttribute("tipo_recursos");
+						%>
+							
+						<div class="form-group col">
+							<label for="fabricante">Tipo de recurso:</label>
+				   			<select required class="form-control" id="id_tipo_recurso" name="id_tipo_recurso">
+									<% for (TipoRecursoJB tr : tipo_recursos) { %>
+		        						<option value="<%= tr.get_id_tipo_recurso() %>" <% if (tr.get_id_tipo_recurso()==id_tipo_recurso) { %> selected <% } %>>
+		            						<%= tr.get_tipo() %>
+		        						</option>
+				    				<% } %>
+							</select>
+						</div>
+		   			</div>
+		   			
+		   			<div class="form-group">
+		   				<label for="sede">URL o ruta del recurso:</label>
+		   				<input required class="form-control" id="url" type="text" value="<%=url%>" maxlength="100" name="url" >
+					</div>
+					
+					<div class="form-group">
+						<label for="sede">Créditos:</label>
+		   				<input required class="form-control" id="creditos" type="text" value="<%=creditos%>" maxlength="100" name="creditos" >
+					</div>
+		
+		    	
+	    		</div>
 	    	</form>
-    		<p> </p>
-    	</div>
-    	
-</div>
+	    	
+		</div>
+	</div>
 	
 	
 	<script>
 	    function prepareSubmit(action) {
-	    	
-	    	//Obtengo mi formulario
-	        var form = document.getElementById('recursoForm');
-	        
-	        // Obtiengo los valores de los campos del formulario
-	       	var form_numero = form["numero"].value.trim();
-	        var form_url = form["url"].value.trim();
-	        var form_creditos = form["creditos"].value.trim();
-	        
-	        // Reviso que los campos no esten vacios
-	        if (form_numero == "") {
-	            alert("Escriba un numero");
-	            return false;
-	        }
-	        
-	        if (form_url == "") {
-	            alert("Escriba una ruta");
-	            return false;
-	        }
-	        
-	        if (form_creditos == "") {
-	            alert("Escriba los creditos");
-	            return false;
-	        }
+	    	var form = document.getElementById('recursoForm');
 	        
 	        if (action === 'guardar') {
 	            form.method = 'post';
@@ -131,7 +124,7 @@
 	            form.action = 'ServletRecursoBorrar';
 	        }
 	        
-	        form.submit();
+	        //form.submit();
 	    }
 	</script>
 

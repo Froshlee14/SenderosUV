@@ -65,30 +65,34 @@
 			    		<input id="id_estacion" type=hidden name="id_estacion" value="<%=id_estacion%>"> 
 			    	</div>
 			    	
-			    	<div class="form-group">
-			    		<label for="nombre">Numero de estacion:</label>
-			   			<input required class="form-control" id="numero" type="number"  value="<%=numero%>" name="numero">
-			    	</div>
-			    		
-			    	<div class="form-group">
-						<label for="nombre">Nombre de la estacion:</label>
-			   			<input required class="form-control" id="nombre" type="text"  value="<%=nombre%>" maxlength="50" name="nombre">
-			   		</div>	
+			    	<div class="row">
+				    	<div class="form-group col-4">
+				    		<label for="nombre">Numero:</label>
+				   			<input required class="form-control" id="numero" type="number"  value="<%=numero%>" name="numero">
+				    	</div>
+				    		
+				    	<div class="form-group col">
+							<label for="nombre">Nombre de la estacion:</label>
+				   			<input required class="form-control" id="nombre" type="text"  value="<%=nombre%>" maxlength="50" name="nombre">
+				   		</div>
+			   		</div>
 			   		
 			   		<div class="form-group">
 			   			<label for="descripcion">Descripción:</label>
 			   			<input required class="form-control" id="descripcion" type="text" value="<%=descripcion%>" maxlength="200" name="descripcion" >	
 					</div>
 					
-					<div class="form-group">
-			    		<label for="latitud">Latitud:</label>
-			   			<input required class="form-control" id="latitud" type="text"  value="<%=latitud%>" maxlength="20" name="latitud">
+					<div class="row">
+						<div class="form-group col">
+				    		<label for="latitud">Latitud:</label>
+				   			<input required class="form-control" id="latitud" type="text"  value="<%=latitud%>" maxlength="20" name="latitud">
+				   		</div>
+				   		
+				   		<div class="form-group col">
+				    		<label for="longitud">Longitud:</label>
+				   			<input required class="form-control" id="longitud" type="text"  value="<%=longitud%>" maxlength="20" name="longitud">
+						</div>
 			   		</div>
-			   		
-			   		<div class="form-group">
-			    		<label for="longitud">Longitud:</label>
-			   			<input required class="form-control" id="longitud" type="text"  value="<%=longitud%>" maxlength="20" name="longitud">
-					</div>
 			   		
 			   	</div>
 			   	
@@ -153,7 +157,8 @@
 
 <script>
     function prepareSubmit(action) {
-        
+    	var form = document.getElementById('estacionForm');
+    	
         if (action === 'guardar') {
             form.method = 'post';
             form.action = 'ServletEstacionGuardar';

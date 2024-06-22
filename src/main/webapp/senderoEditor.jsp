@@ -181,6 +181,8 @@
 	<script>
 		//Tengo 2 botones dentro del mismo formulario, pero cada uno llama a un Servlet diferente.
 	    function prepareSubmit(action) {
+			
+	    	var form = document.getElementById('senderoForm');
 	        
 	        if (action === 'guardar') {
 	            form.method = 'post';

@@ -1,7 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ page import="java.util.List"%>
-<%@ page import="java.util.Date" %>
-<%@ page import="java.text.SimpleDateFormat"%>
 <%@ page import="modelo.UsuarioJB"%>
 <%@ page import="modelo.SenderoJB"%>
 <%@ page import="modelo.EstacionJB"%>
@@ -11,164 +9,121 @@
 
 <html>
 
-	<head>
-		<title>SendinaUV</title>
-	</head>
+<head>
+	<title>SendinaUV</title>
+</head>
 	
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	
-	<style>
-		#map {
-	    	height: 500px; /* The height is 400 pixels */
-	    	width: 100%; /* The width is the width of the web page */
-		}
-		#info {
-	    	height: 500px; /* The height is 400 pixels */
-	    	width: 30%; /* The width is the width of the web page */
-		}
+<style>
+ 	.row {
+ 		height: 92vh; 
+ 	}
+	
+	.map_card{
+		width: 300px;
+		height:auto,
+	}
+	
+	#map {
+		height: 100%;
+		width: 100%;
+	}
+	
+	#info {
+		overflow-y: scroll;
+		height: 100%;
+		scrollbar-width: thin; 
+		scrollbar-color: #888 #f0f0f0;
+      }
+</style>
+
+<body>
+
+ 	<%@ include file="header_01.jsp" %>
+	
+	<%
+		int id_sendero = 0;
+		String nombre = "Sendero nombre ejemplo";
+		String sede = "Sendero sede ejemplo";
+		int year = 2024;
+		int zona = 1;
+		String url_recursos = "Inserte URL aqui";
 		
-
-		.mySlides {display:none}
-		.w3-left, .w3-right, .w3-badge {cursor:pointer}
-		.w3-badge {height:13px;width:13px;padding:0}
-
-
-		.price-tag {
-		  background-color: #4285F4;
-		  border-radius: 8px;
-		  color: #FFFFFF;
-		  font-size: 14px;
-		  padding: 10px 15px;
-		  position: relative;
-		}
-		
-		.price-tag::after {
-		  content: "";
-		  position: absolute;
-		  left: 50%;
-		  top: 100%;
-		  transform: translate(-50%, 0);
-		  width: 0;
-		  height: 0;
-		  border-left: 8px solid transparent;
-		  border-right: 8px solid transparent;
-		  border-top: 8px solid #4285F4;
-		}
-
-
-	</style>
-
-	<body class="w3-theme-l4">
-
-		<%@ include file="header_01.jsp" %>
-		
-		
-		<%
-			int id_sendero = 0;
-			String nombre = "Sendero nombre ejemplo";
-			String sede = "Sendero sede ejemplo";
-			int year = 2024;
-			int zona = 1;
-			String url_recursos = "Inserte URL aqui";
+		SenderoJB sendero = (SenderoJB) request.getAttribute("sendero");
+		if (sendero != null) {
+			id_sendero = sendero.get_id_sendero();
+			nombre = sendero.get_nombre();
+			sede = sendero.get_sede();
+			year = sendero.get_year();
+	        zona = sendero.get_id_zona();
+			url_recursos = sendero.get_url_recursos();
 			
-			SenderoJB sendero = (SenderoJB) request.getAttribute("sendero");
-			if (sendero != null) {
-				id_sendero = sendero.get_id_sendero();
-				nombre = sendero.get_nombre();
-				sede = sendero.get_sede();
-				year = sendero.get_year();
-		        zona = sendero.get_id_zona();
-				url_recursos = sendero.get_url_recursos();
-				
+		}
+		
+		
+		@SuppressWarnings("unchecked")
+		List<EstacionJB> estaciones = (List<EstacionJB>) request.getAttribute("estaciones");
+		
+		if (estaciones != null && !estaciones.isEmpty() ) {
+			for (EstacionJB estacion : estaciones) {
+
+				estacion.get_nombre();
+				estacion.get_latitud();
+				estacion.get_longitud();
 			}
-			
-			
-			@SuppressWarnings("unchecked")
-			List<EstacionJB> estaciones = (List<EstacionJB>) request.getAttribute("estaciones");
-			
-			if (estaciones != null && !estaciones.isEmpty() ) {
-				for (EstacionJB estacion : estaciones) {
-
-					estacion.get_nombre();
-					estacion.get_latitud();
-					estacion.get_longitud();
-				}
-			}
-			else {
-				out.print("Este sendero no tiene estaciones");
-			}
-
-    	
-		%>
+		}
+		else {
+			out.print("Este sendero no tiene estaciones");
+		}
+   	
+	%>
 		
 		<%--<p> <b> <%=nombre%> </b> </p> --%>
-			
-			<div class="w3-cell-row">
+	<div class="row container-fluid no-gutters full-height">
  		
- 				<div id="info" class="w3-container w3-light-blue w3-cell">
-				<!--Aqui va la info -->
-					<% 
-					if (estaciones != null && !estaciones.isEmpty()) {
-                        for (EstacionJB estacion : estaciones) {  
-					%>
-						<div class="mySlides" style="display: none;">
-<%-- 						    <h3><%= estacion.get_nombre() %></h3> --%>
-<%-- 						    <p>Latitud: <%= estacion.get_latitud() %></p> --%>
-<%-- 						    <p>Longitud: <%= estacion.get_longitud() %></p> --%>
-<%-- 						    <p><%= estacion.get_descripcion() %></p> --%>
-						    <%
-						    List<RecursoJB> recursos = (List<RecursoJB>) estacion.get_recursos();
-						    for (RecursoJB recurso : recursos) {
-						    	if (recurso.get_tipo_recurso().equals("Imagen")){
-						    %>
-						    	
-						    	<img src="<%= recurso.get_url() %>" style="width:100%; ">
-
-						    <% 
-						    	}
-						    	if (recurso.get_tipo_recurso().equals("Video")){
-						    %>
-						    	<video controls>
-								  <source src="<%= recurso.get_url() %>" type="video/mp4">
-								</video>
-						    <%
-						    	}
-						    }
-						    %>
-						</div>
-					<%     
-						} 
-					}
-					%>
- 				</div>
+		<div id="info" class="col-4">
+		<% 
+		if (estaciones != null && !estaciones.isEmpty()) {
+                     for (EstacionJB estacion : estaciones) {  
+		%>
+			<div class="slide" style="display: none;">
+<%-- 			<h3><%= estacion.get_nombre() %></h3> --%>
+<%-- 			<p>Latitud: <%= estacion.get_latitud() %></p> --%>
+<%-- 			<p>Longitud: <%= estacion.get_longitud() %></p> --%>
+<%-- 			<p><%= estacion.get_descripcion() %></p> --%>
+			    <%
+			    List<RecursoJB> recursos = (List<RecursoJB>) estacion.get_recursos();
+			    for (RecursoJB recurso : recursos) {
+			    	if (recurso.get_tipo_recurso().equals("Imagen")){
+			    %>
+			    	<img src="<%= recurso.get_url() %>" style="width:100%; ">
+			    <% 
+			    	}
+			    	if (recurso.get_tipo_recurso().equals("Video")){
+			    %>
+			    	<video controls>
+						<source src="<%= recurso.get_url() %>" type="video/mp4">
+					</video>
+			    <%
+			    	}
+			    }
+			    %>
+			</div>
+		<%     
+			} 
+		}
+		%>
+		</div>
  				
- 				<div class="w3-light-grey w3-cell">
- 					<div id="map" class="w3-container">
-					<!--Aqui va el mapa --> 
- 					</div>
- 					<div id="navbar" class="w3-center w3-container w3-blue" style="width:100%">
-					    <button class="w3-button w3-left" onclick="plusDivs(-1)"> &#10094; </button>
- 							<button class="w3-button w3-right" onclick="plusDivs(1)"> &#10095;</button>
- 							<% 
- 							for (int i = 0; i < estaciones.size(); i++) { 
- 								if (i!=0){
- 							%>
-                          		<i class="fa fa-circle demo w3-button w3-hover-blue w3-hover-text-light-blue w3-blue" onclick="currentDiv(<%= i + 1 %>)"></i>  
-                       		<% 
- 								}
- 								else{
- 							%>
- 	                        	<i class="fa fa-home demo w3-button w3-hover-blue w3-hover-text-light-blue w3-blue" onclick="currentDiv(<%= i + 1 %>)"></i>  
- 	                        <% 		
- 								}
- 							}                         	
-                       	%>
-
- 					</div>
- 					
- 				</div>
-    		</div>
-    	
+		<div id="map_container" class="col">
+		
+			<div id="map" class="container-fluid">
+				<!--Aqui va el mapa --> 
+			</div>
+			
+		</div>
+    </div>
  
     		
 
@@ -178,13 +133,14 @@
   (g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({
     key: "AIzaSyANYrOfEcKN46yxrjSmY6JTjXLlpXKBK7w",
     v: "weekly",
-    // Use the 'v' parameter to indicate the version to use (weekly, beta, alpha, etc.).
-    // Add other bootstrap parameters as needed, using camel case.
   });
   
   
   
   let map;
+  let infoWindows = [];
+  let markers = [];
+  let currentInfoWindow = null;
   var slideIndex = 0;
 
   //Cargamos las estaciones 
@@ -223,46 +179,46 @@
     // Configuracion del mapa
     const zoom = 20
     map = new Map(document.getElementById("map"), {
-
       zoom: zoom,
       minZoom: zoom - 1,
       maxZoom: zoom + 2,
       gestureHandling: "cooperative",
-
+      zoomControlOptions: {
+          position: google.maps.ControlPosition.TOP_RIGHT,
+      },
       center: initialPosition,
       mapId: "DEMO_MAP_ID",
       //disableDefaultUI: true,
+      fullscreenControl: false,
       streetViewControl: false,
       mapTypeControl: true,
+      mapTypeControlOptions: {style: google.maps.MapTypeControlStyle.DROPDOWN_MENU},
       mapTypeId: 'terrain',
       zoomControl: true,
-
     });
     
     const pathCoordinates = [];
 
     estaciones.forEach(estacion => {
-    	
-    	//const priceTag = document.createElement("div");
-    	//priceTag.className = "price-tag";
-    	//priceTag.textContent = estacion.numero;
-    	
-    	
-		const contentString = `
-        <div id="content">
-            <h2>${estacion.nombre}</h2>
-            <p> ${estacion.descripcion}</p>
-        </div>`;
+    	const content = document.createElement('div');
+        content.className = 'map_card';
+        content.innerHTML = `
+            <h4 class="text-primary">${estacion.nombre}</h4>
+            <p class="text-secondary">${estacion.descripcion}</p>
+        `;
           
         const infoWindow = new google.maps.InfoWindow({
-          content: contentString,
-          ariaLabel: estacion.nombre,
+        	headerContent: `Estacion #${estacion.numero}`,
+          	//headerDisabled:true,
+        	content: content,
+        	ariaLabel: estacion.nombre,
         });
+        infoWindows.push(infoWindow);
         
         const pin = new PinElement({
-            glyph: `${estacion.numero}`,
-            glyphColor: 'black',
-            scale: 1.5,
+            //glyph: `${estacion.numero}`,
+            glyphColor: '#FF7F50',
+            scale: 1.2,
             background: '#FFD700',
             borderColor: '#FF7F50',
             
@@ -281,6 +237,8 @@
             infoWindow.open({anchor: marker});
           });
         
+        markers.push(marker);
+        
      	//Agregamos el punto al path para dibujar el sendero
         pathCoordinates.push({ lat: estacion.latitud, lng: estacion.longitud });
     });
@@ -297,7 +255,7 @@
         icons: [{
             icon: lineSymbol,
             offset: '100%',
-            repeat: '50px' // Repeat the arrow every 50 pixels
+            repeat: '50px' 
           }],
         geodesic: true,
         strokeColor: '#7CB9E8',
@@ -308,46 +266,76 @@
     
 	//Variable para el control del slide
 	slideIndex = 1;
-	showDivs(slideIndex);
+	cambia_slide(slideIndex);
+	
+	//Controles adicionales
+	//const controlesDiv = document.createElement("div");
+	
+	//Boton para sig. estacion
+	const sig_btn = document.createElement("button");
+	sig_btn.className = "btn btn-primary m-3";
+	sig_btn.textContent = "Siguiente";
+	sig_btn.title = "Cambiar siguiente";
+	sig_btn.type = "button";
+	sig_btn.addEventListener("click", () => {
+		aumenta_indice(1);
+	});
+	
+	//Boton para ant. estacion
+	const ant_btn = document.createElement("button");
+	ant_btn.className = "btn btn-primary m-3";
+	ant_btn.textContent = "Anterior";
+	ant_btn.title = "Cambiar anterior";
+	ant_btn.type = "button";
+	ant_btn.addEventListener("click", () => {
+		aumenta_indice(-1);
+	});
+
+	//Agrego los controles al mapa
+	//controlesDiv.appendChild(ant_btn);
+	//controlesDiv.appendChild(sig_btn);
+	map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(sig_btn);
+	map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(ant_btn);
+
   }
 
   initMap();
-  
  
  	//Funcion para centrar el mapa a un punto en especifico 
-	function centerMap(lat, lng) {
-            map.panTo({ lat: lat, lng: lng });
-    }
+	function centrar_mapa(lat, lng) {
+		map.panTo({ lat: lat, lng: lng });
+	}
 
 	//Funcion para aumentar el indice del slide
-	function plusDivs(n) {
-	  showDivs(slideIndex += n);
+	function aumenta_indice(n) {
+		cambia_slide(slideIndex += n);
 	}
 	
 	//Funcion para ir a un indice del slide en especifico
-	function currentDiv(n) {
-	  showDivs(slideIndex = n);
+	function marcar_indice(n) {
+		cambia_slide(slideIndex = n);
 	}
 
 	//Funcion para mostrar la informacion del slide actual en
 	//el div de informacion
-	function showDivs(n) {
-	  var i;
-	  var x = document.getElementsByClassName("mySlides");
-	  var dots = document.getElementsByClassName("demo");
-	  if (n > x.length) {slideIndex = 1}
-	  if (n < 1) {slideIndex = x.length}
-	  for (i = 0; i < x.length; i++) {
-	    x[i].style.display = "none";  
-	  }
-	  for (i = 0; i < dots.length; i++) {
-	    dots[i].className = dots[i].className.replace(" w3-text-black", "");
-	  }
-	  x[slideIndex-1].style.display = "block";  
-	  dots[slideIndex-1].className += " w3-text-black";
-	  
-	  const estacion = estaciones[slideIndex - 1];
-      centerMap(estacion.latitud, estacion.longitud);
+	function cambia_slide(n) {
+	var i;
+	var x = document.getElementsByClassName("slide");
+	if (n > x.length) {slideIndex = 1}
+	if (n < 1) {slideIndex = x.length}
+	for (i = 0; i < x.length; i++) {
+		x[i].style.display = "none";  
+	}
+	
+	x[slideIndex-1].style.display = "block";
+    
+	const estacion = estaciones[slideIndex - 1];
+		centrar_mapa(estacion.latitud, estacion.longitud);
+		if (currentInfoWindow) {
+	         currentInfoWindow.close();
+	     }
+		currentInfoWindow = infoWindows[slideIndex - 1]
+		infoWindows[slideIndex - 1].open(map, markers[slideIndex - 1]);
 	}
 </script>
 

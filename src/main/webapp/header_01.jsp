@@ -24,9 +24,9 @@ if (usuario != null) {
 
 %>
 
-<nav class="navbar navbar-expand-sm navbar-light sticky-top border">
+<nav class="navbar navbar-expand-sm navbar-light border">
 
-	<div class="navbar-nav mr-auto">
+	<div class="navbar-nav mr-auto ">
 
 		<a class="nav-item nav-link text-dark mr-3" href="index.jsp" type="button"> Inicio </a>
 		<a class="nav-item nav-link text-dark mr-3" href="ServletSenderoLista" > Senderos </a>
